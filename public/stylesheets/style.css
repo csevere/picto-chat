@@ -1,0 +1,316 @@
+
+
+#toolbar{
+  background: rgba(0, 255, 0, .3);
+  color: white;
+  font-family: 'Ravi Prakash', cursive;
+  font-weight: bold;
+  font-size: 20px;
+  padding-top: 1em;
+  padding-bottom: 1em;
+
+}
+
+#time{
+  padding: 10px;
+  position:relative;
+  top: -4em;
+  left: -55em;
+  border-radius: 3px;
+  background: #00816A;
+  display: inline-block;
+  color: white;
+  font-family: 'Inknut Antiqua', serif;
+
+}
+
+
+h1{
+  color: white;
+  font-weight: bold;
+  font-size: 50px;
+  text-align: center;
+  font-family: 'Inknut Antiqua', serif;
+  padding-top: 40px;
+}
+
+
+#bg{
+  position: fixed;
+  top: 0;
+  left: 0;
+  /*preserve aspect ration */
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -1;
+}
+
+
+  /******** THE MIDDLE *********/
+
+#canvas{
+  border: solid 5px black;
+  background-color: white;
+  position: relative;
+  left: -23em;
+  top: 1em;
+}
+
+
+
+ /************* THE FLANKS*****************/
+
+.right{
+  color: white;
+  position: relative;
+  bottom: 58px;
+  left:-34px;
+}
+
+.left{
+  position: relative;
+  right: 28em;
+
+}
+
+
+/************ THE BUTTONS **********/
+
+ .btn-default{
+  display:block;
+  background-color:green;
+  color: white;
+  font-size: 25px;
+  border: 4px solid green;
+  margin: 30px;
+  top: 40px;
+  position: relative;
+  top: 132px;
+  font-family: 'Ravi Prakash', cursive;
+}
+/*
+#camera{
+    float: right;
+    height: 52px;
+    bottom: 37px;
+    left: 276px;
+}*/
+
+.btn-default2{
+  display:block;
+  background-color:green;
+  color: white;
+  font-size: 25px;
+  border: 4px solid green;
+  margin: 30px;
+  position: relative;
+  top: -1em;
+  right: 14em;
+  font-family: 'Ravi Prakash', cursive;
+}
+
+.btn-default3{
+  position: absolute;
+  background-color:green;
+  color: white;
+  font-size: 15px;
+  border: 4px solid green;
+
+}
+
+
+.btn-default4{
+  background-color:green;
+  color: white;
+  font-size: 18px;
+  border: 4px solid green;
+  position: relative;
+  left: 32em;
+  bottom: 3em;
+
+}
+
+/********** END OF BUTTONS ***********/
+
+#form{
+    position: relative;
+    top: 145px;
+    color: black;
+    left: 32px;
+    font-family: 'Ravi Prakash', cursive;
+    font-size: 20px;
+}
+
+p2{
+  position: relative;
+  background: green;
+  top: 138px;
+  color: white;
+  font-family: 'Ravi Prakash', cursive;
+  font-size:25px;
+  left: 31px;
+  border: 2px solid green;
+  border-radius: 5px;
+
+}
+
+
+#message1{
+  color: white;
+  font-size: 25px;
+  display:block;
+  position:relative;
+  background-color: green;
+  height: 179px;
+  font-weight: bold;
+  text-align: center;
+  top: 27em;
+  right: 34.5em;
+  font-family: 'Ravi Prakash', cursive;
+  border-radius: 3%;
+  width: 12em; 
+}
+
+.footer{
+  position: relative;
+  top: 70px;
+  padding-left: 60px;
+  color: white;
+  font-family: 'Ravi Prakash', cursive;
+  font-size: 20px;
+  background-color: green;
+
+}
+
+
+#thickness{
+  width: 39px;
+}
+
+/************ CHAT BOX ****************/
+
+  .chat-parent{
+      width: 56%;
+      height: 497px;
+      background: rgba(0,102,0, 0.3);
+      position: relative;
+      left: 58em;
+      top: -35em;
+      border: 2px ridge green;
+    }
+
+
+
+   /**** MAIN NAV BAR *****/
+
+
+   #title{
+    position: relative;
+    left: 3em;
+    color: white;
+    font-weight: bold;
+
+   }
+
+
+   .nav-parent{
+      display: flex;
+      flex-direction: row; 
+      background: rgba(0, 102, 0, 0.3);
+      border-bottom: 2px inset green;
+      color: white;
+   }
+
+  .text-parent{
+    display:flex;
+    flex-direction: column;
+
+  }
+
+
+
+  #person img{
+    height: 4em;
+    width: 4em;
+    position: relative;
+    left: 21em; 
+
+    }
+
+  #submitUser{
+    position: relative;
+    left: 21em;
+    top: 1em; 
+    display: inline-block;
+  } 
+
+  #new-user{
+    width: 67%;
+  }
+
+/****** MESSAGE DISPLAY BOX *******/
+
+
+  #messages{
+  width: 80%;
+  height: 26em;
+  position: relative;
+  left: 1em;
+  top: -25em;
+  border: 2px inset #A0A0A0;
+  background: rgba(0, 102, 0, 0.3);
+  color:white;
+  font-size: 14px; 
+  padding-left: 10px; 
+
+}
+
+
+
+/*****  USER LISTS *****/
+
+.userslist-parent{
+  display: flex;
+  flex-direction: column; 
+  background: rgba(0, 102, 0, 0.3);
+  color: white;
+  border: 2px inset #A0A0A0;
+  height: 26em;
+  width: 11em;
+  left: 61em;
+  top: 1em;
+  position: relative;
+}
+
+.users-child{
+  align-self: center; 
+}
+
+#online-users{
+  background: rgba(137, 46, 46, 0.3);
+  color: white;
+  width: 100%;
+  height: 2em;
+  font-weight: bold;
+  text-align: center;
+}
+
+
+/****  FORMS: THE INPUT AND SUBMIT ****/
+
+ .text-child{
+  position: relative; 
+  top: -24em;
+  left: 1em;
+
+ }
+
+ #submit-message input{
+  width: 74%;
+ }
+
+ button{
+  color: black 
+ }
+
+   

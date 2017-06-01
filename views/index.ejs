@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Canvas Pictionary</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type ="text/css" href="stylesheets/style.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah|Inknut+Antiqua|Ravi+Prakash" rel="stylesheet">
+
+  </head>
+
+
+  <body>
+
+    <div class = "container">
+      <div class = "row">
+          <div class = "col-md-12 header">
+                <div id = "toolbar" class = "text-center">
+                  <label>Choose marker color</label>
+                  <input type = "color"  id = "color-picker"/>
+                  <label>Choose marker thickness</label>
+                  <input type = "number" id = "thickness" placeholder ="10"/>
+                    <button class = "btn-default3" onclick = "howTo();">How to Play</button>
+                </div>
+          </div>
+      </div>
+
+      <div id = "background-wrap">
+        <div class = "img-center">
+            <img src = "./images/p1.jpg" id = "bg" alt ="" name = "bkImage1"/>
+            <img src = "./images/p2.jpg" id = "bg" alt ="" name = "bkImage2"/>
+        </div>
+      </div>
+
+    <div class = "row">
+      <div class = "col-lg-12 main">
+              <div id = "time">
+                <div class = "time-unit">
+                    <span class = "seconds"></span>
+                    <span class = "smalltext">Timer</span>
+                </div>
+
+              </div>
+              <div class = "col-md-2 left">
+                  <button class = "btn btn-default" onclick = "changeBG();">Change Background</button>
+                  <button class = "btn btn-default" onclick = "startEasy();">Easy</button>
+                  <button class = "btn btn-default" onclick = "startFair();">Fair</button>
+                  <button class = "btn btn-default" onclick = "startHard();">Hard</button>
+                  <button class = "btn btn-default" onclick = "startFriend();">Challenge Friend</button>
+                  <form>
+                    <p2>Enter Your Guess:<br></p2>
+                    <input type="text" id = "form" name="guess"><br>
+                  </form>
+              </div>
+
+              <div class = "col-sm-8 thecanvas">
+                      <h1>PICTO DASH!</h1>
+                      <canvas id = "canvas"  height ="500px" width = "700px"></canvas>
+              </div>
+
+              <div class = "col-md-2 right">
+                  <div id = "message1">Word Box</div>
+                  <button class = "btn btn-default2" onclick = "doAdd();" >Add</button>
+                  <button class = "btn btn-default2" >Review</button>
+                  <button class = "btn btn-default2" onclick = "clearBox();">Clear Boxes</button>
+                  <button class = "btn btn-default2" id = "camera" onclick = "doSnapshot();" >Snapshot</button>
+
+              </div>
+        </div>
+      </div>
+
+      <div class = "chat-parent">
+
+            <div class = "nav-parent" id = "nav-bar">
+                <div class = "nav-child" id = "chat-icon">
+                  
+                </div> 
+
+                <div class = "nav-child" id = "title">
+                    <h3> CHAT!</h3> 
+                </div> 
+
+                <div class = "nav-child" id = "person">
+                    <img src="https://cdn2.iconfinder.com/data/icons/crystalproject/crystal_project_256x256/apps/personal.png">
+                </div>
+                
+                <form class = "nav-child" id = "submitUser">
+                    <input type = "text" id = "new-user">
+                    <button type = "submit" id = "newUser">JOIN</button>               
+                </form>
+
+            </div>
+
+            <div class = "userslist-parent">
+            
+                  <div id =  "online-users" class ="users-child">Online Users</div> 
+
+                  <div id = "users" class= "users-child"></div> <!-- User's name here --> </div>
+
+            <div class = "text-parent">
+
+                <div class = "text-child" id = "messages">
+                  <p> <!-- Messages display here  --> </p>
+
+                </div>
+              <span id = "notifyUser"></span>
+                <form class = "text-child" id = "submit-message">
+
+                      <input type = "hidden" id = "user" value="">
+                      <input id="new-message" autocomplete="off" onkeyup="notifyTyping();" placeholder="Type your message here...">
+                      <button type = "submit" id = "send">SEND</button>
+                </form>
+
+
+                <div class = "text-child" id = "emoji-box">
+                </div>
+      
+            </div>
+
+        </div>  
+
+
+
+
+    </div>
+
+  <!--   <div class = "row">
+        <div class = "col-sm-12 footer">
+          <button class = "btn btn-default4" onclick = "clearPic();">Clear Picture</button>
+          <div id = "message2">Instructions</div>
+        </div>
+    </div>
+ -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- "startEasy();"
+        "startFair();"
+        "startHard();" -->
+
+
+
+
+
+      <!-- //javascript tag has to go after the canvas id -->
+
+
+</container>
+
+
+<!-- <script type = "text/javascript">
+
+    function changeBG(){
+
+      var bkImage1 = Math.ceil(Math.random() * 5);
+      var bkImage2 = Math.ceil(Math.random() * 5);
+
+      var image1 = "./Images/p" + bkImage1 + ".jpg";
+      var image2 = "./Images/p" + bkImage2 + ".jpg";
+
+
+      document.images.bkImage1.src = image1;
+      document.images.bkImage2.src = image2;
+    }
+
+
+
+
+
+</script> -->
+
+
+  <script type="text/javascript" src = "javascripts/scripts.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+
+  </body>
+</html>
