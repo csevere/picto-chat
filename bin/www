@@ -4,7 +4,9 @@
  * Module dependencies.
  */
 
-var app = require('../app');
+//returning express app and an object containing app and server
+var app = require('../app').app;
+
 var debug = require('debug')('picto-chat:server');
 var http = require('http');
 
@@ -12,14 +14,15 @@ var http = require('http');
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '9000');
+var port = normalizePort(process.env.PORT || '7090');
 app.set('port', port);
 
 /**
  * Create HTTP server.
  */
 
-var server = http.createServer(app);
+//require the instance we created in app.js that now contains our socket.io server as well.
+var server = require('../app').server;
 
 /**
  * Listen on provided port, on all network interfaces.

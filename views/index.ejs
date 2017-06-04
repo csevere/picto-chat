@@ -3,9 +3,29 @@
   <head>
     <title>Canvas Pictionary</title>
 
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    
     <link rel="stylesheet" type ="text/css" href="stylesheets/style.css"/>
     <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah|Inknut+Antiqua|Ravi+Prakash" rel="stylesheet">
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+
+    <script type="text/javascript" src = "javascripts/scripts.js"></script>
+
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+
+<!--  <script type="text/javascript" src = "/socket.io/socket.io.js"></script> -->
+
+    <script src="http://localhost:7090/socket.io/socket.io.js"></script>
+
+  
+  
+
+
 
   </head>
 
@@ -20,7 +40,7 @@
                   <input type = "color"  id = "color-picker"/>
                   <label>Choose marker thickness</label>
                   <input type = "number" id = "thickness" placeholder ="10"/>
-                    <button class = "btn-default3" onclick = "howTo();">How to Play</button>
+                   
                 </div>
           </div>
       </div>
@@ -39,35 +59,38 @@
                     <span class = "seconds"></span>
                     <span class = "smalltext">Timer</span>
                 </div>
+              </div>
 
-              </div>
+
+                  <!--    THE LEFT SIDE -->
+
               <div class = "col-md-2 left">
-                  <button class = "btn btn-default" onclick = "changeBG();">Change Background</button>
-                  <button class = "btn btn-default" onclick = "startEasy();">Easy</button>
-                  <button class = "btn btn-default" onclick = "startFair();">Fair</button>
-                  <button class = "btn btn-default" onclick = "startHard();">Hard</button>
-                  <button class = "btn btn-default" onclick = "startFriend();">Challenge Friend</button>
-                  <form>
-                    <p2>Enter Your Guess:<br></p2>
-                    <input type="text" id = "form" name="guess"><br>
-                  </form>
+                  <button class = "btn btn-default" id = "changeBG">Change Background</button>
+                  <button class = "btn btn-default" id = "startEasy">Easy</button>
+                  <button class = "btn btn-default" id = "startFair">Fair</button>
+                  <button class = "btn btn-default" id = "startHard">Hard</button>  
               </div>
+
+
+                    <!--     THE CANVAS -->
 
               <div class = "col-sm-8 thecanvas">
-                      <h1>PICTO DASH!</h1>
-                      <canvas id = "canvas"  height ="500px" width = "700px"></canvas>
+                  <h1>PICTO DASH!</h1>
+                  <canvas id = "canvas"  height ="378px" width = "500px"></canvas>
               </div>
+
+               <!--  THE RIGHT SIDE -->
 
               <div class = "col-md-2 right">
                   <div id = "message1">Word Box</div>
-                  <button class = "btn btn-default2" onclick = "doAdd();" >Add</button>
-                  <button class = "btn btn-default2" >Review</button>
-                  <button class = "btn btn-default2" onclick = "clearBox();">Clear Boxes</button>
-                  <button class = "btn btn-default2" id = "camera" onclick = "doSnapshot();" >Snapshot</button>
-
+                   <button class = "btn btn-default2" id = "clearPic">Clear Picture</button> 
+                  <button class = "btn btn-default2"  id = "clearBox">Clear Boxes</button>
+                  <button class = "btn btn-default2"  id = "doSnapshot" >Snapshot</button>
               </div>
         </div>
       </div>
+
+        <!--   THE CHAT BOX START -->
 
       <div class = "chat-parent">
 
@@ -83,6 +106,8 @@
                 <div class = "nav-child" id = "person">
                     <img src="https://cdn2.iconfinder.com/data/icons/crystalproject/crystal_project_256x256/apps/personal.png">
                 </div>
+
+               <!--  NEW USERS SECTION START -->
                 
                 <form class = "nav-child" id = "submitUser">
                     <input type = "text" id = "new-user">
@@ -103,13 +128,20 @@
                   <p> <!-- Messages display here  --> </p>
 
                 </div>
-              <span id = "notifyUser"></span>
+
                 <form class = "text-child" id = "submit-message">
+                    <input type = "text" id = "new-message"/>
+                    <button type = "submit" id = "send">SEND</button>
+                </form>
+              <!-- <span id = "notifyUser"></span> -->
+
+
+             <!--    <form class = "text-child" id = "submit-message">
 
                       <input type = "hidden" id = "user" value="">
                       <input id="new-message" autocomplete="off" onkeyup="notifyTyping();" placeholder="Type your message here...">
                       <button type = "submit" id = "send">SEND</button>
-                </form>
+                </form> -->
 
 
                 <div class = "text-child" id = "emoji-box">
@@ -120,70 +152,13 @@
         </div>  
 
 
-
-
     </div>
 
-  <!--   <div class = "row">
-        <div class = "col-sm-12 footer">
-          <button class = "btn btn-default4" onclick = "clearPic();">Clear Picture</button>
-          <div id = "message2">Instructions</div>
-        </div>
-    </div>
- -->
 
 
 
 
-
-
-
-
-
-
-
-
-
-        <!-- "startEasy();"
-        "startFair();"
-        "startHard();" -->
-
-
-
-
-
-      <!-- //javascript tag has to go after the canvas id -->
-
-
-</container>
-
-
-<!-- <script type = "text/javascript">
-
-    function changeBG(){
-
-      var bkImage1 = Math.ceil(Math.random() * 5);
-      var bkImage2 = Math.ceil(Math.random() * 5);
-
-      var image1 = "./Images/p" + bkImage1 + ".jpg";
-      var image2 = "./Images/p" + bkImage2 + ".jpg";
-
-
-      document.images.bkImage1.src = image1;
-      document.images.bkImage2.src = image2;
-    }
-
-
-
-
-
-</script> -->
-
-
-  <script type="text/javascript" src = "javascripts/scripts.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+ 
 
   </body>
 </html>

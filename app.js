@@ -1,3 +1,4 @@
+//Require all necessary modules
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -9,6 +10,12 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
+
+var routes = require('./routes/index');
+
+//set up websockets server to run in the same app
+var server = require('http').Server(app);
+var io = require('socket.io')(server); 
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -37,10 +44,20 @@ app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
+  //passing socket to response in middleware
+  //adds socket.io to res in our event loop
+  res.io = io;
+  next(); 
 
   // render the error page
+  // pass our server into bin/www
   res.status(err.status || 500);
-  res.render('error');
+  res.render('error', {
+  	message: err.message,
+  	error: {}
+  });
 });
 
-module.exports = app;
+
+// import server since declaring it here instead of bin/ww
+module.exports = {app:app, server: server}; 

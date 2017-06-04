@@ -7,15 +7,15 @@
   font-weight: bold;
   font-size: 20px;
   padding-top: 1em;
-  padding-bottom: 1em;
-
 }
+
+/******** TIMER ***********/
 
 #time{
   padding: 10px;
   position:relative;
-  top: -4em;
-  left: -55em;
+  top: -3em;
+  left: -57em;
   border-radius: 3px;
   background: #00816A;
   display: inline-block;
@@ -31,7 +31,9 @@ h1{
   font-size: 50px;
   text-align: center;
   font-family: 'Inknut Antiqua', serif;
-  padding-top: 40px;
+  padding-top: 35px;
+  position: relative;
+  top: -1em;
 }
 
 
@@ -46,13 +48,13 @@ h1{
 }
 
 
-  /******** THE MIDDLE *********/
+  /******** THE CANVAS *********/
 
 #canvas{
   border: solid 5px black;
   background-color: white;
   position: relative;
-  left: -23em;
+  left: -12em;
   top: 1em;
 }
 
@@ -69,7 +71,8 @@ h1{
 
 .left{
   position: relative;
-  right: 28em;
+  right: 9em;
+  top: -7em;
 
 }
 
@@ -104,7 +107,7 @@ h1{
   border: 4px solid green;
   margin: 30px;
   position: relative;
-  top: -1em;
+  top: 0em;
   right: 14em;
   font-family: 'Ravi Prakash', cursive;
 }
@@ -161,14 +164,14 @@ p2{
   display:block;
   position:relative;
   background-color: green;
-  height: 179px;
   font-weight: bold;
   text-align: center;
-  top: 27em;
+  top: 22em;
   right: 34.5em;
   font-family: 'Ravi Prakash', cursive;
   border-radius: 3%;
-  width: 12em; 
+  width: 18em; 
+  height: 3em; 
 }
 
 .footer{
@@ -190,12 +193,12 @@ p2{
 /************ CHAT BOX ****************/
 
   .chat-parent{
-      width: 56%;
-      height: 497px;
+      width: 36%;
+      height: 35em;
       background: rgba(0,102,0, 0.3);
       position: relative;
-      left: 58em;
-      top: -35em;
+      left: 56em;
+      top: -31em;
       border: 2px ridge green;
     }
 
@@ -233,26 +236,27 @@ p2{
     height: 4em;
     width: 4em;
     position: relative;
-    left: 21em; 
+    left: 5em; 
 
     }
 
   #submitUser{
     position: relative;
-    left: 21em;
+    left: 5em;
     top: 1em; 
     display: inline-block;
   } 
 
   #new-user{
     width: 67%;
+    color: black;
   }
 
 /****** MESSAGE DISPLAY BOX *******/
 
 
   #messages{
-  width: 80%;
+  width: 65%;
   height: 26em;
   position: relative;
   left: 1em;
@@ -276,8 +280,8 @@ p2{
   color: white;
   border: 2px inset #A0A0A0;
   height: 26em;
-  width: 11em;
-  left: 61em;
+  width: 8.2em;
+  left: 20em;
   top: 1em;
   position: relative;
 }
@@ -293,6 +297,8 @@ p2{
   height: 2em;
   font-weight: bold;
   text-align: center;
+  position: relative;
+  top: 0em;
 }
 
 
@@ -306,11 +312,12 @@ p2{
  }
 
  #submit-message input{
-  width: 74%;
+  width: 80%;
  }
 
  button{
   color: black 
  }
+
 
    
