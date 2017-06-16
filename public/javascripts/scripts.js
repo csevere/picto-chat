@@ -1,47 +1,5 @@
 
 
-
-// //Creating the client side script
-// var name = $('#new-user').val();
-// var socketio = io();
-
-// var name = $('#new-user').val();
-// console.log(name);
-
-// //send an event to the server
-
-// socketio.emit('nameToServer', name);
-
-// socketio.on('newUser', (userName)=>{
-//     $('#users').append(`<div id = "users">${userName}</div>`);
-// })
-      
-  
-
-// $('#submit-message').submit(function(event){
-//     event.preventDefault();
-//     var name = $('#new-user').val();
-//     var newMessage = $('#new-message').val();
-//     socketio.emit('messageToServer', {
-//             newMessage: newMesage,
-//             name: name 
-//     });
-
-// });
-    
-// socketio.on('messageToClient', (message)=>{
-//     var now = new Date(Date.now());
-//     var uiFormat = now.getHours() + ":" + now.getMinutes(); 
-//     console.log(uiFormat); 
-
-//     $('#messages').prepend('<p> ' + message +  ' (' +uiFormat+ ')' + '</p>'); 
-
-
-//     });
-
-// });
-
-
 window.onload = function(){
 
     var canvas = document.getElementById('canvas');
@@ -133,67 +91,83 @@ window.onload = function(){
     });
 
 
-
     $(document).ready(function(){
 
+////CHAT START/////
 
-        //Creating the client side script
 
-        var socketio = io.connect('http://localhost:7090');
+         //Creating the client side script
+    var socketio = io.connect('http://localhost:3000');
+    var name = $('#new-user').val();
+
+
+    // Send an event to the server
+    socketio.emit('nameToServer',name);
+    
+//////// THE JOIN BUTTON ///// 
+    $('#submitUser').submit(function(event){
+        //prevent from repeating submission
+        event.preventDefault();
+        $("#user").empty(); 
         var name = $('#new-user').val();
-        
+        console.log(name);  
+         //coming from index.js
+         //creates a tcp connection
 
-        $('#submitUser').submit(function(event){
-            //prevent from repeating submission
-            event.preventDefault();
-            var name = $('#new-user').val();
-             console.log(name); 
-             // console.log(io);
-             // console.log(window.io); 
-             //coming from index.js
-             //creates a tcp connection
+         //sends an event to the server
+         console.log("TEST1");
+         socketio.emit('nameToServer', name); 
+   });
 
-             //send an event to the server
-             socketio.emit('nameToServer', name); 
-       });
 
-        var newUsersHTML = name;
-
-        socketio.on('newUser', (userName)=>{
-            console.log(userName + " just joined!")
-            newUsersHTML += '<div id = "users">'+ userName + '<br>'+ '</div>';
-            $('#users').html(newUsersHTML); 
-               console.log(newUsers);
+    socketio.on('newUser', (userName)=>{
+         $("#user").empty(); 
+         console.log("TEST4")
+        // console.log(userName + " just joined!")
+            
+        // goes through each name and selects it
+        userName.forEach( (elem) => {
+           $('#users').append(`<div id="users">${elem.name}</div>`); 
         })
-              
-          
+        // $('#users').append(`<div id="users">${}</div>`); 
 
-        $('#submit-message').submit(function(event){
-            event.preventDefault();
-            var name = $('#new-user').val();
-            var newMessage = $('#new-message').val();
-            console.log(newMessage)
-            socketio.emit('messageToServer', {
-                    newMessage: newMessage,
-                    name: name 
-            });
+
+
+        
+        // // $('#users').append('<div id="users">' + "hello" + '</div>');
+        // $('#users').html("hello"); 
+         console.log("TEST5")
+           // console.log(newUsers);
+    })
+          
+      
+
+    $('#submit-message').submit(function(event){
+        event.preventDefault();
+        var name = $('#new-user').val();
+        var newMessage = $('#new-message').val();
+        console.log(newMessage)
+        socketio.emit('messageToServer', {
+                newMessage: newMessage,
+                name: name 
+        });
+
+    });
+        
+    socketio.on('messageToClient', (message)=>{
+        var now = new Date(Date.now());
+        var uiFormat = now.getHours() + ":" + now.getMinutes(); 
+        console.log(uiFormat); 
+
+        $('#messages').prepend('<p> ' + message +  ' (' +uiFormat+ ')' + '</p>'); 
+
 
         });
-            
-        socketio.on('messageToClient', (message)=>{
-            var now = new Date(Date.now());
-            var uiFormat = now.getHours() + ":" + now.getMinutes(); 
-            console.log(uiFormat); 
 
-            $('#messages').prepend('<p> ' + message +  ' (' +uiFormat+ ')' + '</p>'); 
+                    ///// END OF CHAT /////
 
 
-            });
-
-
-
-
-
+      /////// CHANGE BACKGROUND OF GAME ///////
 
         $('#changeBG').click(function(){
 
@@ -209,123 +183,66 @@ window.onload = function(){
 
         });
 
+
         $('#startEasy').click(function(){
-            
-
-            // var start = new Date;
-
-            // setInterval(function() {
-            //     $('#time').text((new Date - start) / 1000 + " Seconds");
-            // }, 1000);
-
-            var oneMinute = 60 * 1;
-            display = document.querySelector('#time');
-            startTimer(oneMinute, display);
-            clearInterval(oneMinute);
-
-
             var wordList = [
-                "cat",
-                " skateboard",
-                " mouse",
-                " whale",
-                " kite",
-                " banana",
-                " cow",
-                " house",
-                " tree",
+                "cat,",
+                " skateboard,",
+                " mouse,",
+                " whale,",
+                " kite,",
+                " banana,",
+                " cow,",
+                " house,",
+                " tree,",
                 " cookie"
             ];
 
             $('#message1').html(wordList)
             
-
-            // document.getElementById('message1').innerHTML = [wordList];
         }); 
 
 
 
         $('#startFair').click(function(){
-
-            var oneMinute = 60 * 3;
-            display = document.querySelector('#time');
-            startTimer(oneMinute, display);
-            clearInterval(oneMinute);
-
-
             var wordList = [
-                "frog",
-                " pinwheel",
-                " lightsaber",
-                " cowboy",
-                " pirate",
-                " nature",
-                " garbage",
-                " teapot",
-                " America",
+                "frog,",
+                " pinwheel,",
+                " lightsaber,",
+                " cowboy,",
+                " pirate,",
+                " nature,",
+                " garbage,",
+                " teapot,",
+                " America,",
                 " bicycle"
             ];
 
             $('#message1').html(wordList);
 
-            // document.getElementById('message1').innerHTML = [wordList];
-
+        
         });
 
         $('#startHard').click(function(){
-
-            var oneMinutes = 60 * 3;
-            display = document.querySelector('#time');
-            startTimer(oneMinutes, display);
-            clearInterval(oneMinute);
-
-
             var wordList = [
-                "jungle",
-                " retail",
-                " glitter",
-                " vegetarian",
-                " commercial",
-                " jazz",
-                " braid",
-                " mad scientist",
-                " owl",
+                "jungle,",
+                " retail,",
+                " glitter,",
+                " vegetarian,",
+                " commercial,",
+                " jazz,",
+                " braid,",
+                " mad scientist,",
+                " owl,",
                 " myth"
             ];
             $('#message1').html(wordList);
 
-            // document.getElementById('message1').innerHTML = [wordList];
 
         });
 
-        $('#clearBox').click(function clearBox(){
-            $('#message1').html("start");
-
-            // document.getElementById('message1').innerHTML = "start";
-           
-
-
-        }); 
-
-        function startTimer(duration, display) {
-            var timer = duration, minutes, seconds;
-            setInterval(function () {
-                minutes = parseInt(timer / 60, 10);
-                seconds = parseInt(timer % 60, 10);
-
-                minutes = minutes < 10 ? "0" + minutes : minutes;
-                seconds = seconds < 10 ? "0" + seconds : seconds;
-
-                display.textContent = minutes + ":" + seconds;
-
-                if (--timer < 0) {
-                    timer = duration;
-                }
-            }, 1000);
-            clearInterval(timer);
-
-        }
-
+       
+        ///Download picture function ///
 
         $('#doSnapshot').click(function(){
             html2canvas(document.getElementById("canvas"), {
@@ -344,8 +261,15 @@ window.onload = function(){
 
         });
 
-        
+         //CLEAR THE MESSAGE BOX
 
+        $('#clearBox').click(function clearBox(){
+            $('#message1').html("start");
+
+        }); 
+
+        
+        // CLEAR THE CANVAS
         $('#clearPic').click(function(){
               context.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -353,5 +277,5 @@ window.onload = function(){
 
 
     }); 
-
-}          
+}
+        

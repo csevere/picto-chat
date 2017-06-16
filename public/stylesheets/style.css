@@ -1,27 +1,25 @@
+html{
+  overflow-x: hidden;;
+}
+
+.header{
+  background: rgba(0, 255, 0, .3);
+}
 
 
 #toolbar{
-  background: rgba(0, 255, 0, .3);
   color: white;
   font-family: 'Ravi Prakash', cursive;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 2em;
   padding-top: 1em;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
 }
 
-/******** TIMER ***********/
-
-#time{
-  padding: 10px;
-  position:relative;
-  top: -3em;
-  left: -57em;
-  border-radius: 3px;
-  background: #00816A;
-  display: inline-block;
-  color: white;
-  font-family: 'Inknut Antiqua', serif;
-
+#thickness{
+  width: 3em;
 }
 
 
@@ -53,28 +51,33 @@ h1{
 #canvas{
   border: solid 5px black;
   background-color: white;
-  position: relative;
-  left: -12em;
-  top: 1em;
+
 }
 
 
 
  /************* THE FLANKS*****************/
 
-.right{
+.right, .left{
   color: white;
-  position: relative;
-  bottom: 58px;
-  left:-34px;
-}
-
-.left{
-  position: relative;
-  right: 9em;
-  top: -7em;
 
 }
+
+/******   THE WORD BOX ***********/
+
+#message1{
+  color: white;
+  font-size: 25px;
+  background-color: green;
+  font-weight: bold;
+  text-align: center;
+  font-family: 'Ravi Prakash', cursive;
+  border-radius: 5px;
+}
+
+
+
+
 
 
 /************ THE BUTTONS **********/
@@ -86,10 +89,9 @@ h1{
   font-size: 25px;
   border: 4px solid green;
   margin: 30px;
-  top: 40px;
-  position: relative;
-  top: 132px;
   font-family: 'Ravi Prakash', cursive;
+  border-radius: 5px;
+
 }
 /*
 #camera{
@@ -106,18 +108,16 @@ h1{
   font-size: 25px;
   border: 4px solid green;
   margin: 30px;
-  position: relative;
-  top: 0em;
-  right: 14em;
   font-family: 'Ravi Prakash', cursive;
+  border-radius: 5px;
 }
 
 .btn-default3{
-  position: absolute;
   background-color:green;
   color: white;
   font-size: 15px;
   border: 4px solid green;
+  border-radius: 5px;
 
 }
 
@@ -127,9 +127,7 @@ h1{
   color: white;
   font-size: 18px;
   border: 4px solid green;
-  position: relative;
-  left: 32em;
-  bottom: 3em;
+  border-radius: 5px;
 
 }
 
@@ -153,26 +151,12 @@ p2{
   font-size:25px;
   left: 31px;
   border: 2px solid green;
-  border-radius: 5px;
+  border-radius: 15px;
 
 }
 
 
-#message1{
-  color: white;
-  font-size: 25px;
-  display:block;
-  position:relative;
-  background-color: green;
-  font-weight: bold;
-  text-align: center;
-  top: 22em;
-  right: 34.5em;
-  font-family: 'Ravi Prakash', cursive;
-  border-radius: 3%;
-  width: 18em; 
-  height: 3em; 
-}
+
 
 .footer{
   position: relative;
@@ -186,138 +170,121 @@ p2{
 }
 
 
-#thickness{
-  width: 39px;
-}
+
 
 /************ CHAT BOX ****************/
 
-  .chat-parent{
-      width: 36%;
-      height: 35em;
-      background: rgba(0,102,0, 0.3);
-      position: relative;
-      left: 56em;
-      top: -31em;
-      border: 2px ridge green;
-    }
+
+
+ /**** HEADER *****/
 
 
 
-   /**** MAIN NAV BAR *****/
+#chat-body{
+  margin-top: 10px; 
+  height: 35em;
+  background: rgba(0,102,0, 0.3);
+  border: 2px ridge green;
+  left: 9em;
+  border-radius: 5px;
+}
 
 
-   #title{
-    position: relative;
-    left: 3em;
-    color: white;
-    font-weight: bold;
-
-   }
-
-
-   .nav-parent{
-      display: flex;
-      flex-direction: row; 
-      background: rgba(0, 102, 0, 0.3);
-      border-bottom: 2px inset green;
-      color: white;
-   }
-
-  .text-parent{
-    display:flex;
-    flex-direction: column;
-
-  }
+.header{
+  margin-top: 10px;
+  background: rgba(137, 46, 46, 0.3);
+  border: 2px inset green;
+  color: white;
+  width: 100%;
+  border-radius: 5px;
+}
 
 
-
-  #person img{
-    height: 4em;
-    width: 4em;
-    position: relative;
-    left: 5em; 
-
-    }
-
-  #submitUser{
-    position: relative;
-    left: 5em;
-    top: 1em; 
-    display: inline-block;
-  } 
-
-  #new-user{
-    width: 67%;
-    color: black;
-  }
-
-/****** MESSAGE DISPLAY BOX *******/
-
-
-  #messages{
-  width: 65%;
-  height: 26em;
-  position: relative;
-  left: 1em;
-  top: -25em;
-  border: 2px inset #A0A0A0;
-  background: rgba(0, 102, 0, 0.3);
-  color:white;
-  font-size: 14px; 
-  padding-left: 10px; 
+#title{
+  float: left; 
+  color: white;
+  font-weight: bold;
 
 }
 
+#person img{
+  float: right;
+  height: 3em;
+  width: 3em;
+  margin-top: 6px;
+  margin-right: 10px; 
+}
+
+#submitUser{
+  float: right;
+  display: inline-block;
+} 
+
+#new-user{
+  margin-top: 15px;
+  color: black;
+}
+
+button{
+  color: black;
+}
+
+#messages{
+  margin-left: -15px; 
+  margin-top: 10px; 
+  height: 26em;
+  width: 150%;
+  border: 2px inset #A0A0A0;
+  background: rgba(137, 46, 46, 0.3);
+  color:white;
+  font-size: 14px; 
+  padding-left: 10px;
+  border-radius: 5px; 
+
+}
 
 
 /*****  USER LISTS *****/
 
-.userslist-parent{
-  display: flex;
-  flex-direction: column; 
-  background: rgba(0, 102, 0, 0.3);
+
+
+.userslist{
+  float: right;
+  background: rgba(137, 46, 46, 0.3);
   color: white;
   border: 2px inset #A0A0A0;
   height: 26em;
   width: 8.2em;
-  left: 20em;
-  top: 1em;
-  position: relative;
+  margin-right: -18em;
+  margin-top: 10px;
+  border-radius: 5px;
 }
 
-.users-child{
-  align-self: center; 
-}
 
 #online-users{
+  float: right;
+  width: 100%; 
   background: rgba(137, 46, 46, 0.3);
   color: white;
-  width: 100%;
   height: 2em;
   font-weight: bold;
   text-align: center;
-  position: relative;
-  top: 0em;
 }
 
 
 /****  FORMS: THE INPUT AND SUBMIT ****/
 
- .text-child{
-  position: relative; 
-  top: -24em;
-  left: 1em;
-
- }
 
  #submit-message input{
-  width: 80%;
+  margin-top: 10px;
+  margin-bottom: 10px; 
+  width: 100%;
+  border-radius: 5px;
  }
 
- button{
-  color: black 
- }
+.text{
+  display: inline-block;
+}
 
 
    

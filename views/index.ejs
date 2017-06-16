@@ -32,15 +32,16 @@
 
   <body>
 
-    <div class = "container">
+    <div class = "container-fluid mainpage">
+          
+                <!--    HEADER -->
       <div class = "row">
-          <div class = "col-md-12 header">
-                <div id = "toolbar" class = "text-center">
+          <div class = "col-md-12 col-sm-12 header">
+                <div id = "toolbar">
                   <label>Choose marker color</label>
                   <input type = "color"  id = "color-picker"/>
                   <label>Choose marker thickness</label>
-                  <input type = "number" id = "thickness" placeholder ="10"/>
-                   
+                  <input type = "number" id = "thickness" placeholder ="10"/> 
                 </div>
           </div>
       </div>
@@ -52,111 +53,115 @@
         </div>
       </div>
 
-    <div class = "row">
-      <div class = "col-lg-12 main">
-              <div id = "time">
-                <div class = "time-unit">
-                    <span class = "seconds"></span>
-                    <span class = "smalltext">Timer</span>
-                </div>
-              </div>
-
-
-                  <!--    THE LEFT SIDE -->
-
-              <div class = "col-md-2 left">
-                  <button class = "btn btn-default" id = "changeBG">Change Background</button>
-                  <button class = "btn btn-default" id = "startEasy">Easy</button>
-                  <button class = "btn btn-default" id = "startFair">Fair</button>
-                  <button class = "btn btn-default" id = "startHard">Hard</button>  
-              </div>
-
-
-                    <!--     THE CANVAS -->
-
-              <div class = "col-sm-8 thecanvas">
-                  <h1>PICTO DASH!</h1>
-                  <canvas id = "canvas"  height ="378px" width = "500px"></canvas>
-              </div>
-
-               <!--  THE RIGHT SIDE -->
-
-              <div class = "col-md-2 right">
-                  <div id = "message1">Word Box</div>
-                   <button class = "btn btn-default2" id = "clearPic">Clear Picture</button> 
-                  <button class = "btn btn-default2"  id = "clearBox">Clear Boxes</button>
-                  <button class = "btn btn-default2"  id = "doSnapshot" >Snapshot</button>
-              </div>
+      <div class="row">
+        <div class="col-md-12 text center" id = title>
+             <h1>PICTO CHAT</h1>
         </div>
       </div>
 
-        <!--   THE CHAT BOX START -->
 
-      <div class = "chat-parent">
-
-            <div class = "nav-parent" id = "nav-bar">
-                <div class = "nav-child" id = "chat-icon">
+      <div class="container-fluid">
+        <div class = "row">
+          <div class = "col-md-12 main">
                   
-                </div> 
+                      <!--    THE LEFT SIDE -->
 
-                <div class = "nav-child" id = "title">
-                    <h3> CHAT!</h3> 
-                </div> 
+                  <div class = "col-md-3 col-sm-4 left">
+                      <button class = "btn btn-default" id = "changeBG">Change Background</button>
+                      <button class = "btn btn-default" id = "startEasy">Easy</button>
+                      <button class = "btn btn-default" id = "startFair">Fair</button>
+                      <button class = "btn btn-default" id = "startHard">Hard</button>  
+                  </div>
 
-                <div class = "nav-child" id = "person">
-                    <img src="https://cdn2.iconfinder.com/data/icons/crystalproject/crystal_project_256x256/apps/personal.png">
+
+                        <!--     THE CANVAS -->
+
+                  <div class = "col-md-6 col-sm-7 thecanvas">
+                      <canvas id = "canvas"  height ="378px" width = "500px"></canvas>
+                  </div>
+
+                   <!--  THE RIGHT SIDE -->
+
+                  <div class = "col-md-3 col-sm-4 right">
+                      <div id = "message1">Word Box</div>
+                       <button class = "btn btn-default2" id = "clearPic">Clear Picture</button> 
+                      <button class = "btn btn-default2"  id = "clearBox">Clear Boxes</button>
+                      <button class = "btn btn-default2"  id = "doSnapshot" >Snapshot</button>
+                  </div>
+            </div>
+          </div>
+        </div>
+
+          <!--   THE CHAT BOX START -->
+        <div class="container text center">
+          <div class="row">
+            <div class="col-md-10 col-sm-10" id = "chat-body">
+              <div class="col-md-10 col-sm-10 header" >  
+                  <div id = "title">
+                      <h3> CHAT!</h3> 
+                  </div>
+              
+                <!--     ADD NEW USER SECTION -->
+
+                  <form id = "submitUser">
+                      <input type = "text" id = "new-user">
+                      <button type = "submit" id = "newUser">JOIN</button>               
+                  </form>
+
+
+                  <div id = "person">
+                      <img src="https://cdn2.iconfinder.com/data/icons/crystalproject/crystal_project_256x256/apps/personal.png">
+                  </div>
+
+              </div>
+
+                 <!--    MAIN CHAT BODY -->
+              <div class="row">
+                <div class="col-md-10 col-sm-10 main-body">
+                  <div class="col-md-8 col-sm-8">
+                      <div class = "text-child" id = "messages">
+                          <p> <!-- Messages display here  --> </p>
+
+                      </div>
+                  </div>
+
+                  <!--   USERS' LIST -->
+                  <div class="col-md-2 col-sm-1">
+                    <div class = "userslist">
+                  
+                      <div id =  "online-users" class ="users">     Online 
+                      </div> 
+
+                      <div id = "users" class= "users">  
+                        <div> <!-- User's name here --> </div>
+                      </div>
+
+                    </div>
+                  </div>
                 </div>
+              </div>
 
-               <!--  NEW USERS SECTION START -->
-                
-                <form class = "nav-child" id = "submitUser">
-                    <input type = "text" id = "new-user">
-                    <button type = "submit" id = "newUser">JOIN</button>               
-                </form>
+              <div class="row">
+                <div class="col-md-8 col-sm-9">
+                  <form class = "text" id = "submit-message">
+                    
+                    <span><input type = "text" id = "new-message"/></span>
+
+                    <span>
+                      <button class = "btn btn-success" type = "submit" id = "send">SEND</button>
+                    </span>
+
+                  </form>
+                </div>
+              </div>
 
             </div>
-
-            <div class = "userslist-parent">
-            
-                  <div id =  "online-users" class ="users-child">Online Users</div> 
-
-                  <div id = "users" class= "users-child"></div> <!-- User's name here --> </div>
-
-            <div class = "text-parent">
-
-                <div class = "text-child" id = "messages">
-                  <p> <!-- Messages display here  --> </p>
-
-                </div>
-
-                <form class = "text-child" id = "submit-message">
-                    <input type = "text" id = "new-message"/>
-                    <button type = "submit" id = "send">SEND</button>
-                </form>
-              <!-- <span id = "notifyUser"></span> -->
-
-
-             <!--    <form class = "text-child" id = "submit-message">
-
-                      <input type = "hidden" id = "user" value="">
-                      <input id="new-message" autocomplete="off" onkeyup="notifyTyping();" placeholder="Type your message here...">
-                      <button type = "submit" id = "send">SEND</button>
-                </form> -->
-
-
-                <div class = "text-child" id = "emoji-box">
-                </div>
-      
-            </div>
-
-        </div>  
-
+          </div>
+        </div>
 
     </div>
 
-
-
-
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.1/socket.io.js"></script>
 
  
 
