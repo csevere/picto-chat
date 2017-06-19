@@ -179,7 +179,6 @@ p2{
  /**** HEADER *****/
 
 
-
 #chat-body{
   margin-top: 10px; 
   height: 35em;
@@ -190,13 +189,14 @@ p2{
 }
 
 
-.header{
+.header-chat{
   margin-top: 10px;
-  background: rgba(137, 46, 46, 0.3);
+  background:rgba(0, 128, 0, 0.5);
   border: 2px inset green;
   color: white;
-  width: 100%;
+  width: 93%;
   border-radius: 5px;
+  margin-left: 1.3em; 
 }
 
 
@@ -230,12 +230,12 @@ button{
 }
 
 #messages{
-  margin-left: -15px; 
+  margin-left: 4px; 
   margin-top: 10px; 
-  height: 26em;
-  width: 150%;
+  height: 21em;
+  width: 185%;
   border: 2px inset #A0A0A0;
-  background: rgba(137, 46, 46, 0.3);
+  background:rgba(0, 128, 0, 0.5);
   color:white;
   font-size: 14px; 
   padding-left: 10px;
@@ -250,12 +250,12 @@ button{
 
 .userslist{
   float: right;
-  background: rgba(137, 46, 46, 0.3);
+  background:rgba(0, 128, 0, 0.5);
   color: white;
   border: 2px inset #A0A0A0;
-  height: 26em;
+  height: 21em;
   width: 8.2em;
-  margin-right: -18em;
+  margin-right: -23em;
   margin-top: 10px;
   border-radius: 5px;
 }
@@ -276,15 +276,22 @@ button{
 
 
  #submit-message input{
-  margin-top: 10px;
-  margin-bottom: 10px; 
-  width: 100%;
   border-radius: 5px;
+  position: relative;
+  top: 2em; 
+  width: 143%;
  }
 
-.text{
+/*.text{
   display: inline-block;
+}*/
+
+.btn-success{
+  position: relative;
+  top: -1.4em;
+  left: 34em;
 }
+
 
 
    

@@ -98,8 +98,6 @@ window.onload = function(){
 
          //Creating the client side script
     var socketio = io.connect('http://localhost:3000');
-    var name = $('#new-user').val();
-
 
     // Send an event to the server
     socketio.emit('nameToServer',name);
@@ -108,34 +106,36 @@ window.onload = function(){
     $('#submitUser').submit(function(event){
         //prevent from repeating submission
         event.preventDefault();
-        $("#user").empty(); 
+        // console.log(name);  
         var name = $('#new-user').val();
-        console.log(name);  
-         //coming from index.js
-         //creates a tcp connection
+        //coming from index.js
+        //creates a tcp connection
 
-         //sends an event to the server
-         console.log("TEST1");
-         socketio.emit('nameToServer', name); 
+        //sends an event to the server
+        // console.log("TEST1");
+        socketio.emit('nameToServer', name);
+      
    });
 
 
     socketio.on('newUser', (userName)=>{
-         $("#user").empty(); 
+         event.preventDefault();
          console.log("TEST4")
         // console.log(userName + " just joined!")
             
         // goes through each name and selects it
-        userName.forEach( (elem) => {
-           $('#users').append(`<div id="users">${elem.name}</div>`); 
+        // $('#users').append(`<div id="users">${userName}</div>`);
+        // console.log(userName);
+        userName.forEach((elem) => {
+           // console.log(userName);
+           console.log(elem.name); 
+            $('#users').append(`<div id="users">${elem.name}</div>`);
+           // $('#messages').append(`<p>${elem.name} has joined the chat!</p>`);   
         })
-        // $('#users').append(`<div id="users">${}</div>`); 
 
+        // $('#users').append(`<div id="users">${userName}</div>`);
+        // $('#messages').prepend(`<p>${userName} has joined the chat!</p>`);
 
-
-        
-        // // $('#users').append('<div id="users">' + "hello" + '</div>');
-        // $('#users').html("hello"); 
          console.log("TEST5")
            // console.log(newUsers);
     })
@@ -157,12 +157,70 @@ window.onload = function(){
     socketio.on('messageToClient', (message)=>{
         var now = new Date(Date.now());
         var uiFormat = now.getHours() + ":" + now.getMinutes(); 
-        console.log(uiFormat); 
+        // console.log(uiFormat); 
 
         $('#messages').prepend('<p> ' + message +  ' (' +uiFormat+ ')' + '</p>'); 
 
-
         });
+
+    socketio.on('userDisconnect', (user)=>{
+         user.forEach( (elem) => {   
+           $('#messages').prepend(`<p>${elem} has left the chat!</p>`); 
+        });
+    });
+
+
+
+    //UPLOAD PICTURE FUNCTION///
+
+    //Bind the onchange event for the file input
+    //using jQuery.
+    // $('#imagefile').on('change', function(e){
+    //     //Get the first (and only one) file element
+    //     //that is included in the original event
+    //     var file = e.originalEvent.target.files[0],
+    //         reader = new FileReader();
+    //     //When the file has been read...
+    //     reader.onload = function(evt){
+    //         //Because of how the file was read,
+    //         //evt.target.result contains the image in base64 format
+    //         //Nothing special, just creates an img element
+    //         //and appends it to the DOM so my UI shows
+    //         //that I posted an image.
+    //         //send the image via Socket.io
+    //         socketio.emit('user image', evt.target.result);
+    //     };
+    //         //And now, read the image and base64
+    //         reader.readAsDataURL(file);  
+    //     });
+
+
+    $('#imagefile').bind('change', function(e){
+      var data = e.originalEvent.target.files[0];
+      var reader = new FileReader();
+      reader.onload = function(evt){
+        image('me', evt.target.result);
+        socket.emit('user image', evt.target.result);
+      };
+      reader.readAsDataURL(data);
+      
+    });
+
+
+        //image is received/add img element to DOM
+        
+        socketio.on('user image', image);
+
+        function image (from, base64Image) {
+            $('#messages').append($('<b>').text(from),
+            '<img src="' + base64Image + '"/>');
+        }
+
+
+  
+
+
+
 
                     ///// END OF CHAT /////
 
@@ -260,6 +318,7 @@ window.onload = function(){
             });
 
         });
+
 
          //CLEAR THE MESSAGE BOX
 

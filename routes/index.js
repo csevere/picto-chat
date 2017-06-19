@@ -1,10 +1,20 @@
  
 var express = require('express');
-var router = express.Router();
-var app = express();
-var server = require('http').createServer(app);
-var socketio = ("socket.io");
+    router = express.Router();
+    app = express();
+    server = require('http').createServer(app);
+    socketio = ('socket.io');
+    fs = require('fs');
+    static = require('node-static');
+    path = require('path');
 
+ //create variable for the file upload
+ //use static to serve static files such as images, CSS files, and JavaScript files
+var file = new static.Server(path.join(__dirname, '..', 'public'));
+
+function handler(req, res){
+	file.serve(req, res);
+}
 
 //set up express to serve the files in the public folder
 
@@ -17,26 +27,31 @@ router.get('/', function(req, res) {
 io = require('socket.io').listen(server);
 
 
-var users = []; 
+var newUsers = []; 
 //handle socket connections..
 io.sockets.on('connect',(socket)=>{
 	console.log("Someone connected via socket!");
-	// console.log(socket);
+	
 
 	socket.on('nameToServer',(name)=>{
-		 console.log("TEST2")
+		 // console.log("TEST2")
 		//creating a clientInfo object using default class called object
 		var clientInfo = new Object();
 		clientInfo.name = name;
 		clientInfo.clientId = socket.id;
-		users.push(clientInfo);
-		console.log(clientInfo.name + " just joined.");
-		console.log("TEST3")
-		io.sockets.emit('newUser',users);
+		if(newUsers.indexOf(clientInfo.name) <= -1){
+			console.log(clientInfo.name + " just joined.");
+			// console.log("TEST3")
+			newUsers.push(clientInfo);
+			console.log(newUsers);
+			io.sockets.emit('newUser',newUsers);
+
+		}
+		
 	});
 
 	socket.on('sendMessage',()=>{
-		console.log("Someone clicked on the big blue button.");
+		// console.log("Someone clicked on the big blue button.");
 	});
 
 	socket.on('messageToServer',(messageObj)=>{
@@ -47,21 +62,31 @@ io.sockets.on('connect',(socket)=>{
 
 	socket.on('disconnect',(data)=>{
 		console.log('someone logged off')
-		for (let i = 0; i < users.length; i++){
-			var currentUser = users[i];
+		for (let i = 0; i < newUsers.length; i++){
+			var currentUser = newUsers[i];
 			if (currentUser.clientId == socket.id){
-				users.pop(currentUser);
+				newUsers.pop(currentUser);
 				break;
 			}
 		}
-		// io.sockets.emit('userDisconnect',users);
+		io.sockets.emit('userDisconnect', newUsers);
 	});
+
+	socket.on('is typing', (data)=>{
+		io.sockets.emit('typing', name)
+	});
+
+	socket.on('user image', function (msg) {
+      console.log(msg);
+      //received an image: broadcast to all
+      io.sockets.emit('user image', msg);
+    });
 
 
 });
 
-console.log("The node file is working.");
-//make sure that the server listens 
+
+//set a port for the app to run on
 server.listen(3000);
 
 
