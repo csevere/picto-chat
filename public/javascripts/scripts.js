@@ -96,18 +96,20 @@ window.onload = function(){
 ////CHAT START/////
 
 
-         //Creating the client side script
+    //Creating the client side script
     var socketio = io.connect('http://localhost:3000');
 
-    // Send an event to the server
-    socketio.emit('nameToServer',name);
+    // // Send an event to the server
+    // socketio.emit('nameToServer',name);
     
 //////// THE JOIN BUTTON ///// 
     $('#submitUser').submit(function(event){
         //prevent from repeating submission
         event.preventDefault();
+        $('#users').empty();
         // console.log(name);  
         var name = $('#new-user').val();
+
         //coming from index.js
         //creates a tcp connection
 
@@ -117,26 +119,30 @@ window.onload = function(){
       
    });
 
+    // listener, whenever the server emits 'updatechat', this updates the chat body
+    socket.on('updatechat', function (name, data) {
+        $('#messages').append('<b>'+name + ':</b> ' + data + '<br>');
+    });
+
 
     socketio.on('newUser', (userName)=>{
          event.preventDefault();
-         console.log("TEST4")
+         // console.log("TEST4")
         // console.log(userName + " just joined!")
-            
-        // goes through each name and selects it
-        // $('#users').append(`<div id="users">${userName}</div>`);
-        // console.log(userName);
-        userName.forEach((elem) => {
-           // console.log(userName);
-           console.log(elem.name); 
-            $('#users').append(`<div id="users">${elem.name}</div>`);
-           // $('#messages').append(`<p>${elem.name} has joined the chat!</p>`);   
-        })
+      
+        userName.shift();
+        var userlist = userName.slice(-1)[0];
+        $('#users').append(`<div id="users">${userlist}</div>`);
+        $('#messages').append(`<p>${userlist} has joined the chat!</p>`);  
 
-        // $('#users').append(`<div id="users">${userName}</div>`);
-        // $('#messages').prepend(`<p>${userName} has joined the chat!</p>`);
+        // userName.forEach((elem) => {
+        //    // console.log(userName);
+        //    console.log(elem); 
+        //    $('#users').append(`<div id="users">${elem}</div>`);
+        //    $('#messages').prepend(`<p>${elem} has joined the chat!</p>`);   
+        // })
 
-         console.log("TEST5")
+         // console.log("TEST5")
            // console.log(newUsers);
     })
           
@@ -146,7 +152,7 @@ window.onload = function(){
         event.preventDefault();
         var name = $('#new-user').val();
         var newMessage = $('#new-message').val();
-        console.log(newMessage)
+        // console.log(newMessage)
         socketio.emit('messageToServer', {
                 newMessage: newMessage,
                 name: name 
@@ -163,8 +169,8 @@ window.onload = function(){
 
         });
 
-    socketio.on('userDisconnect', (user)=>{
-         user.forEach( (elem) => {   
+    socketio.on('userDisconnect', (userName)=>{
+         userName.forEach((elem) => {   
            $('#messages').prepend(`<p>${elem} has left the chat!</p>`); 
         });
     });
@@ -172,27 +178,6 @@ window.onload = function(){
 
 
     //UPLOAD PICTURE FUNCTION///
-
-    //Bind the onchange event for the file input
-    //using jQuery.
-    // $('#imagefile').on('change', function(e){
-    //     //Get the first (and only one) file element
-    //     //that is included in the original event
-    //     var file = e.originalEvent.target.files[0],
-    //         reader = new FileReader();
-    //     //When the file has been read...
-    //     reader.onload = function(evt){
-    //         //Because of how the file was read,
-    //         //evt.target.result contains the image in base64 format
-    //         //Nothing special, just creates an img element
-    //         //and appends it to the DOM so my UI shows
-    //         //that I posted an image.
-    //         //send the image via Socket.io
-    //         socketio.emit('user image', evt.target.result);
-    //     };
-    //         //And now, read the image and base64
-    //         reader.readAsDataURL(file);  
-    //     });
 
 
     $('#imagefile').bind('change', function(e){
