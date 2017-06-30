@@ -1,3 +1,8 @@
+*{
+  box-sizing: border-box;
+}
+
+
 html{
   overflow-x: hidden;;
 }
@@ -156,8 +161,6 @@ p2{
 }
 
 
-
-
 .footer{
   position: relative;
   top: 70px;
@@ -175,7 +178,6 @@ p2{
 /************ CHAT BOX ****************/
 
 
-
  /**** HEADER *****/
 
 
@@ -184,8 +186,8 @@ p2{
   height: 35em;
   background: rgba(0,102,0, 0.3);
   border: 2px ridge green;
-  left: 9em;
   border-radius: 5px;
+  height: 100%; 
 }
 
 
@@ -197,6 +199,8 @@ p2{
   width: 93%;
   border-radius: 5px;
   margin-left: 1.3em; 
+  padding-bottom: 10px;
+  wdith: 81vw;
 }
 
 
@@ -204,37 +208,52 @@ p2{
   float: left; 
   color: white;
   font-weight: bold;
+}
 
+#client{
+  display: inline-flex;
+  margin:10px 0px 0px 157px; 
 }
 
 #person img{
-  float: right;
+  float: left;
   height: 3em;
   width: 3em;
-  margin-top: 6px;
-  margin-right: 10px; 
+  margin: -3px 10px 0px 0px;
 }
 
 #submitUser{
   float: right;
   display: inline-block;
+  display: -webkit-box;
 } 
+
+#submitUser button{
+  margin: -4px 0px 0px 17px;
+
+}
+
+#submitUser input{
+  margin: 0px 10px 0px 10px;
+
+}
 
 #new-user{
   margin-top: 15px;
   color: black;
 }
 
+      });
 #newUser{
   
   right: 1em !important;
 }
 
 #messages{
-  margin-left: 4px; 
+  margin-left: -17px; 
   margin-top: 10px; 
   height: 21em;
-  width: 185%;
+  width: 53em;
   border: 2px inset #A0A0A0;
   background:rgba(4, 5, 4, 0.6);
   color:white;
@@ -258,7 +277,7 @@ p2{
   border: 2px inset #A0A0A0;
   height: 21em;
   width: 8.2em;
-  margin-right: -23em;
+  margin-right: 2em;
   margin-top: 10px;
   border-radius: 5px;
   overflow-y: auto;
@@ -281,20 +300,198 @@ p2{
 
  #submit-message input{
   border-radius: 5px;
-  position: relative;
-  top: 2em; 
-  width: 143%;
+  margin-top: 10px; 
+  width: 70%;
  }
 
-/*.text{
-  display: inline-block;
+
+
+.buttons{
+  float: left;
+  margin: 7px 12px;
+}
+
+/*.buttons button{
+  border: 5px solid orange;
+  font-size: 10px;
+  
 }*/
 
-.btn-success{
-  position: relative;
-  top: -1.4em;
-  left: 34em;
+#input-area{
+  display: flex;
+  flex-wrap: wrap;
 }
+
+#submit-message{
+  width: 100%; 
+}
+
+#imagefile img{
+  width: 42px;
+  height: 42px; 
+  float: left;
+  margin: 7px 12px 0px 12px;
+  background-size: auto;
+/*  padding-left: 1px;*/
+  cursor: pointer; 
+
+}
+
+/******** media queries*******/
+
+
+
+
+/*
+use this for physical screen sizes*/
+
+@media only screen and (max-device-width: 1200px){
+
+  .userslist{
+    margin-right: 0.5em;
+  }
+
+  #messages{
+    width: 45em;
+  }
+    
+}
+
+/*use this for decreasing browser window*/
+@media (max-width: 1199px){
+
+  .userslist{
+    margin-right: 0.5em;
+  }
+
+  #messages{
+    width: 42em;
+  }
+    
+}
+
+
+@media only screen and (max-device-width: 1024px){
+
+  .userslist{
+    margin-right: 0.5em;
+  }
+
+  #messages{
+    width: 44em;
+  }
+    
+}
+
+@media only screen and (max-device-width: 991px){
+
+  .userslist{
+    margin-right: 0.5em;
+  }
+
+  #messages{
+    width: 30em;
+  }
+    
+}
+
+@media (max-width: 991px){
+
+  .userslist{
+    margin-right: 0.5em;
+  }
+
+  #messages{
+    width: 31em;
+  }
+    
+}
+
+
+@media only screen and (max-device-width: 768px){
+
+  .userslist{
+    margin-right: 0.5em;
+  }
+
+  #messages{
+    width: 30em;
+  }
+    
+}
+
+@media (max-width: 767px){
+
+  .userslist{
+    margin-right: 0.5em;
+    margin-top: -21em;
+  }
+
+  #messages{
+    width: 31em;
+  }
+    
+}
+
+
+@media only screen and (max-device-width: 640px){
+
+  .userslist{
+    margin-right: 0.5em;
+  }
+
+  #messages{
+    width: 29em;
+  }
+   
+}
+
+
+@media only screen and (max-device-width: 400px){
+
+  .userslist{
+    margin-right: 0.5em;
+  }
+
+  #messages{
+    width: 29em;
+  }
+
+    
+}
+
+
+@media only screen and (max-width: 500px){
+
+  .userslist{
+    margin-right: 0.5em;
+  }
+
+  #messages{
+    width: 29em;
+  }
+
+    
+}
+
+/*@media only screen and (max-device-width: 1366px){
+
+  .userslist{
+    margin-right: 1.5em;
+  }
+
+  #messages{
+    width: 42em;
+  }
+
+    
+}
+*/
+
+
+
+
+
 
 
 

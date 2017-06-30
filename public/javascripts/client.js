@@ -12,7 +12,6 @@ $(document).ready(function(){
         event.preventDefault();
         var name = $('#new-user').val();
         var data = name; 
-         // $('#users').empty();
         // console.log(name);  
         //coming from index.js
         //creates a tcp connection
@@ -23,9 +22,11 @@ $(document).ready(function(){
 
 
     socketio.on('newUser', (newUsers)=>{
+
         event.preventDefault();
       
         for(i = 0; i < newUsers.length; i++){
+            console.log(newUsers);
             //prevents someone from joining chat with a name already in the array
             if(newUsers.indexOf(i) <= -1){
                 // console.log(newUsers);
@@ -39,19 +40,6 @@ $(document).ready(function(){
         $('#messages').prepend(`<p>${user} has joined the chat!</p>`); 
 
 
-
-        // console.log("TEST4")
-        // console.log(userName + " just joined!")
-
-        // usernames.forEach((elem) => {
-        //    // console.log(userName);
-        //    console.log(elem); 
-        //    $('#users').append(`<div id="users">${elem}</div>`);
-        //    $('#messages').prepend(`<p>${elem} has joined the chat!</p>`);   
-        // })
-
-        // console.log("TEST5")
-        // $('#users').empty();
     });
           
       
@@ -81,72 +69,70 @@ $(document).ready(function(){
 
       ////////////// DISCONNECT///////////////////////////
 
-    socketio.on('userDisconnect', (currentUser)=>{  
-        $('#messages').prepend(`<p>${currentUser} has left the chat!</p>`); 
+    socketio.on('userDisconnect', (loggedoff, newUsers)=>{  
+        $('#users').empty(); 
+        //update the list of users online 
+        var online = newUsers.join('<br/>')
+        $('#messages').prepend(`<p>${loggedoff} has left the chat!</p>`); 
+        $('#users').append(`<div id="users">${online}</div>`);
+        console.log(newUsers)
 
-            console.log(currentUser);
-         // console.log(elem);
-
-        //  newUsers.forEach((elem) => {   
-        //    $('#messages').prepend(`<p>${elem} has left the chat!</p>`); 
-
-        // });
-        //  console.log(newUsers);
-        //  // console.log(elem);
+            console.log(newUsers);
 
         });
        
 
+    ///UPLOADING THE IMAGE 
 
-    var context = canvas.getContext('2d');
+    var ctx = document.getElementById('canvas').getContext('2d');
 
 
     socketio.on('image',(info)=>{
         if(info.image){
+            //create an image constructor for canvas
             var img = new Image();
-            img.src = "data:image/jpeg;base64," + image.buffer;
+            img.src = 'data:image/jpeg;base64,' + image.buffer;
             ctx.drawImage(img, 0, 0);
         }
-
+        $('#messages').append('<img src="' + img + '"/>');
+        
 
     })
 
-
-    //image is received/add img element to DOM
     
-    socketio.on('image', image);
+     
+    
 
-    function image (from, base64Image) {
-        $('#messages').append($('<b>').text(from),
-        '<img src="' + base64Image + '"/>');
-    }
+});
 
+
+   
 
 
     //UPLOAD PICTURE FUNCTION///
 
 
-    $('#imagefile').bind('change', function(e){
-      var data = e.originalEvent.target.files[0];
-      var reader = new FileReader();
-      reader.onload = function(evt){
-        image('me', evt.target.result);
-        socket.emit('user image', evt.target.result);
-      };
-      reader.readAsDataURL(data);
+//     $('#imagefile').bind('change', function(e){
+//       var data = e.originalEvent.target.files[0];
+//       var reader = new FileReader();
+//       reader.onload = function(evt){
+//         image('me', evt.target.result);
+//         socket.emit('user image', evt.target.result);
+//       };
+//       reader.readAsDataURL(data);
       
-    });
+//     });
 
 
-        //image is received/add img element to DOM
+//         //image is received/add img element to DOM
         
-        socketio.on('user image', image);
+//         socketio.on('user image', image);
 
-        function image (from, base64Image) {
-            $('#messages').append($('<b>').text(from),
-            '<img src="' + base64Image + '"/>');
-        }
-});
+//         function image (from, base64Image) {
+//             $('#messages').append($('<b>').text(from),
+//             '<img src="' + base64Image + '"/>');
+//         }
+// });
 
 
                     ///// END OF CHAT /////

@@ -1,16 +1,20 @@
  
-var express = require('express')
-    ,router = express.Router()
-    ,app = express()
-    ,debug = require('debug')(http)
-    ,name = 'picto-chat'
-    ,http = require('http')
-    ,server = require('http').createServer(app)
-    ,socketio = require('socket.io')
-    ,fs = require('fs')
-    ,static = require('node-static')
-    path = require('path');
+var express = require('express'),
+    router = express.Router(),
+    app = express(),
+    http = require('http'),
+    //import delivery and fs modules for file transfer
+    dl  = require('delivery'),
+    fs = require('fs'),
+    name = 'picto-chat',
+    server = require('http').createServer(app),
+    socketio = require('socket.io'),
     
+    // static = require('node-static')
+    path = require('path');
+
+
+
 
  //create variable for the file upload
  //use static to serve static files such as images, CSS files, and JavaScript files
@@ -25,10 +29,11 @@ var express = require('express')
 // 	file.serve(req, res);
 // }
 
+
 //set up express to serve the files in the public folder
 
 /* GET home page. */
-router.get('/', function(req, res) {
+router.get('/', function(req, res){
    res.render('index', { title: 'Express' });
 
 });
@@ -41,57 +46,54 @@ server.listen(3000);
 var newUsers = []; 
 //handle socket connections..
 io.sockets.on('connect',(socket)=>{
-	console.log("Line44: Someone connected via socket!");
-
-	// //manually setting the close timeout 
-	// io.configure( function() {
- //    	io.set('close timeout', 60*60*24); // 24h time out
-	// });
-	
+	var delivery = dl.listen(socket);
+	delivery.on('receive.success',(file)=>{
+		var params = file.params;
+		fs.writeFile(file.name, file.buffer,(err)=>{
+			if(err){
+				console.log('File could not be saved');
+			}else{
+				console.log('File saved.')
+			}
+		});
+	}); 
 
 	socket.on('nameToServer',(name)=>{
-		if(newUsers.indexOf(name) <= -1){
-			// console.log(name + " just joined.");
-			// console.log("TEST3")
-			newUsers.push(name); 
-			// console.log("line57 " + name.id) <<< doesn't works
-			// var userlist = newUsers.shift();
-			console.log("line 58 " + newUsers);
+		//create a class for the client 
+		var clientInfo = new Object();
+		clientInfo.name = name;
+		clientInfo.clientId = socket.id;
+
+
+		if(newUsers.indexOf(clientInfo.name) <= -1){
+			newUsers.push(clientInfo.name);
+			console.log("line 62 " + clientInfo.name);
 			io.sockets.emit('newUser',newUsers);
-			// io.sockets.emit('newUser', userlist);
 		}
 
-		// var clientInfo = new Object();
-		// clientInfo.name = name;
-		// clientInfo.clientId = socket.id;
-		// console.log("line 66" + clientInfo)
-
-		// if(newUsers.indexOf(clientInfo.name) <= -1){
-		// 	newUsers.push(clientInfo.name);
-		// 	// var userlist = newUsers.shift();
-		// 	console.log("line 71 " + clientInfo);
-		// 	io.sockets.emit('newUser',newUsers);
-		// 	// io.sockets.emit('newUser', userlist);
-		// }
-	});
-
-	socket.on('disconnect',(data)=>{
-		for (let i = 0; i < newUsers.length; i++){
-			var currentUser = newUsers[i];
-			//use socket.id to target specific user that logged off 
-			if (currentUser.clientId == socket.id){
-				newUsers.pop(currentUser);
-				break;
-				console.log("line 84" + currentUser + "loggedoff")
+		socket.on('disconnect',(data)=>{
+		console.log("line 69: someone disconnected")
+			for (let i = 0; i < newUsers.length; i++){
+				var currentUser = clientInfo;
+				// console.log("line 70" + currentUser)
+				//use socket.id to target specific user that logged off 
+				if (currentUser.clientId == socket.id){
+					// console.log("line 74" + currentUser.clientId)
+					//remove the user with socket id from array 
+					newUsers.pop(currentUser);
+					break;
+				}
 			}
-		}
-		io.sockets.emit('userDisconnect', currentUser);
-	});
+			var loggedoff = currentUser.name;
+			console.log("line 77 " + currentUser.name + " loggedoff") 
+		io.sockets.emit('userDisconnect', loggedoff, newUsers);
+		});
 
-		
+	});
+	
 
 	socket.on('sendMessage',()=>{
-		// console.log("Someone clicked on the big blue button.");
+		
 	});
 
 	socket.on('messageToServer',(messageObj)=>{
@@ -100,24 +102,33 @@ io.sockets.on('connect',(socket)=>{
 		console.log(messageObj.name)
 	});
 
+	
 
 
-	socket.on('is typing', (data)=>{
-		io.sockets.emit('typing', name)
-	});
 
-// 	// trying to serve the image file from the server
-// 	socket.on('connect', function(socket){
-//   		fs.readFile(__dirname + '/image.jpg', function(err, buf){
-// 		    // it's possible to embed binary data
-// 		    // within arbitrarily-complex objects
-// 		    io.sockets.emit('image', { 
-// 		    	image: true, 
-// 		    	buffer: buf.toString('base64') 
-// 		    });
-// 		    console.log('image file is initialized');
-//  		});
-// 	});
+
+	// socket.on('is typing', (data)=>{
+	// 	io.sockets.emit('typing', name)
+	// });
+
+
+
+
+
+	// // trying to serve the image file from the server
+	// socket.on('connect',(socket)=>{
+	// 	console.log("line 103: this working")
+
+ //  		fs.readFile(__dirname + '/image/image.jpg', function(err, buf){
+	// 	    io.sockets.emit('image', { 
+	// 	    	image: true, 
+	// 	    	buffer: buf.toString('base64') 
+	// 	    });
+	// 	    console.log('image file is initialized');
+ // 		});
+	// });
+
+
 
 });
 

@@ -91,6 +91,13 @@ window.onload = function(){
 
 
     $(document).ready(function(){
+
+    $("#clear").click(function(){
+        event.preventDefault();
+        $('#messages').empty(); 
+        console.log("it works")
+
+    }) 
               
 
       /////// CHANGE BACKGROUND OF GAME ///////
