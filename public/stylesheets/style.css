@@ -337,6 +337,15 @@ p2{
 
 }
 
+
+#subfile{
+  color: green;
+}
+
+#selectfile{
+  color: white;
+}
+
 /******** media queries*******/
 
 
@@ -354,6 +363,8 @@ use this for physical screen sizes*/
   #messages{
     width: 45em;
   }
+
+
     
 }
 
@@ -404,6 +415,10 @@ use this for physical screen sizes*/
   #messages{
     width: 31em;
   }
+
+  h1{
+    margin-left: 6em;
+  }
     
 }
 
@@ -430,6 +445,10 @@ use this for physical screen sizes*/
   #messages{
     width: 31em;
   }
+
+  h1{
+      margin-left: 6em;
+  }
     
 }
 
@@ -442,6 +461,10 @@ use this for physical screen sizes*/
 
   #messages{
     width: 29em;
+  }
+
+  h1{
+      margin-left: 6em;
   }
    
 }
@@ -457,6 +480,10 @@ use this for physical screen sizes*/
     width: 29em;
   }
 
+  h1{
+      margin-left: 6em;
+  }
+
     
 }
 
@@ -469,6 +496,10 @@ use this for physical screen sizes*/
 
   #messages{
     width: 29em;
+  }
+
+  h1{
+      margin-left: 6em;
   }
 
     

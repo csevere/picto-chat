@@ -6,17 +6,15 @@ $(document).ready(function(){
     // // Send an event to the server
     // socketio.emit('nameToServer',name);
     
-        //////// THE JOIN BUTTON ///// 
+        //////// THE JOIN EVENT ///// 
     $('#submitUser').submit(function(event){
         //prevent from repeating submission
         event.preventDefault();
         var name = $('#new-user').val();
-        var data = name; 
-        // console.log(name);  
+        var data = name;  
         //coming from index.js
         //creates a tcp connection
         //sends an event to the server
-        // console.log("TEST1");
         socketio.emit('nameToServer', name);     
    });
 
@@ -39,11 +37,9 @@ $(document).ready(function(){
         $('#users').append(`<div id="users">${user}</div>`);
         $('#messages').prepend(`<p>${user} has joined the chat!</p>`); 
 
-
     });
           
       
-
     $('#submit-message').submit(function(event){
         event.preventDefault();
         var name = $('#new-user').val();
@@ -80,28 +76,7 @@ $(document).ready(function(){
             console.log(newUsers);
 
         });
-       
-
-    ///UPLOADING THE IMAGE 
-
-    var ctx = document.getElementById('canvas').getContext('2d');
-
-
-    socketio.on('image',(info)=>{
-        if(info.image){
-            //create an image constructor for canvas
-            var img = new Image();
-            img.src = 'data:image/jpeg;base64,' + image.buffer;
-            ctx.drawImage(img, 0, 0);
-        }
-        $('#messages').append('<img src="' + img + '"/>');
-        
-
-    })
-
-    
-     
-    
+          
 
 });
 
@@ -135,5 +110,62 @@ $(document).ready(function(){
 // });
 
 
-                    ///// END OF CHAT /////
+
+    // var ctx = document.getElementById('canvas').getContext('2d');
+
+
+    // socketio.on('image',(info)=>{
+    //     if(info.image){
+    //         //create an image constructor for canvas
+    //         var img = new Image();
+    //         img.src = 'data:image/jpeg;base64,' + image.buffer;
+    //         ctx.drawImage(img, 0, 0);
+    //     }
+    //     $('#messages').append('<img src="' + img + '"/>');
+        
+
+    // })
+
+
+    // socketio.on('connect', ()=>{
+    //     var delivery = new Object(socketio); 
+    //     console.log("waiting to send")
+
+    //     delivery.on('delivery.connect', (delivery)=>{
+    //         $("input[type=submit]").submit((event)=>{
+    //             var file = $("input[type=file]")[0].files[0];
+    //             var extraParams = {image: 'image'}
+    //             evt.preventDefault
+    //             console.log("it works")
+    //         })
+    //     });
+
+    //     delivery.emit('send.success', (fileUID)=>{
+    //         console.log("file was successfilly sent.")
+    //     })
+    // });
+
+
+
+
+    ///UPLOADING THE IMAGE 
+
+    // socketio.on('user image', image)
+    
+    // function image (from, base64Image){
+    //     $('#image')..append($('<p>').append($('<b>').text(from), '<img src="' + base64Image + '"/>'));
+    // }
+
+    // $('#imagefile').bind('change', function(e){
+    //     var data = e.originalEvent.target.files[0];
+    //     var reader = new FileReader();
+    //     reader.onload = function(evt){
+    //         image('me', evt.target.result);
+    //         socket.emit('user image', evt.target.result);
+    //       };
+    //       reader.readAsDataURL(data);
+      
+    // });
+
+    
                    

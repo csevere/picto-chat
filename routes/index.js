@@ -2,35 +2,20 @@
 var express = require('express'),
     router = express.Router(),
     app = express(),
+    server = require('http').createServer(app),
     http = require('http'),
-    //import delivery and fs modules for file transfer
+    name = 'picto-chat',
+    socketio = require('socket.io'),
+    //io is listening to the server
+    io = require('socket.io').listen(server);
+	//set a port for the app to run on
+	server.listen(3000);
+
+	//import delivery and fs modules for file transfer, but not necessary for express however
     dl  = require('delivery'),
     fs = require('fs'),
-    name = 'picto-chat',
-    server = require('http').createServer(app),
-    socketio = require('socket.io'),
-    
-    // static = require('node-static')
-    path = require('path');
 
 
-
-
- //create variable for the file upload
- //use static to serve static files such as images, CSS files, and JavaScript files
-// var file = new static.Server(path.join(__dirname, '..', 'public'));
-
-//static file configuration
-
-// router.use(express.static(_dirname + '/public'));
-// router.use(express.static(_dirname + '/public/app/upload/images'));
-
-// function handler(req, res){
-// 	file.serve(req, res);
-// }
-
-
-//set up express to serve the files in the public folder
 
 /* GET home page. */
 router.get('/', function(req, res){
@@ -38,33 +23,20 @@ router.get('/', function(req, res){
 
 });
 
-io = require('socket.io').listen(server);
-//set a port for the app to run on
-server.listen(3000);
-
-
+//empty array to put in new users 
 var newUsers = []; 
 //handle socket connections..
 io.sockets.on('connect',(socket)=>{
-	var delivery = dl.listen(socket);
-	delivery.on('receive.success',(file)=>{
-		var params = file.params;
-		fs.writeFile(file.name, file.buffer,(err)=>{
-			if(err){
-				console.log('File could not be saved');
-			}else{
-				console.log('File saved.')
-			}
-		});
-	}); 
-
+	console.log("new user connected to socket!")
+	
 	socket.on('nameToServer',(name)=>{
+
 		//create a class for the client 
 		var clientInfo = new Object();
 		clientInfo.name = name;
 		clientInfo.clientId = socket.id;
 
-
+		//makes sure it doesn't select or push the same name in an array 
 		if(newUsers.indexOf(clientInfo.name) <= -1){
 			newUsers.push(clientInfo.name);
 			console.log("line 62 " + clientInfo.name);
@@ -102,36 +74,42 @@ io.sockets.on('connect',(socket)=>{
 		console.log(messageObj.name)
 	});
 
-	
+
+});
 
 
+///handling receiving files 
 
-
-	// socket.on('is typing', (data)=>{
-	// 	io.sockets.emit('typing', name)
-	// });
-
-
-
-
-
-	// // trying to serve the image file from the server
-	// socket.on('connect',(socket)=>{
-	// 	console.log("line 103: this working")
-
- //  		fs.readFile(__dirname + '/image/image.jpg', function(err, buf){
-	// 	    io.sockets.emit('image', { 
-	// 	    	image: true, 
-	// 	    	buffer: buf.toString('base64') 
-	// 	    });
-	// 	    console.log('image file is initialized');
- // 		});
-	// });
-
-
-
+io.sockets.on('connect', function(socket){
+	console.log("waiting for delivery")
+  var delivery = dl.listen(socket);
+  delivery.on('receive.success',function(file){
+    var params = file.params;
+    fs.writeFile(file.name,file.buffer, function(err){
+      if(err){
+        console.log('File could not be saved.');
+      }else{
+        console.log('File saved.');
+      };
+    });
+  });
 });
 
 module.exports = router;
 
 
+//ATTEMPTS TO SEND IMAGE VIA SOCKETS
+
+// io.sockets.on('connection', function(socket){
+//   var delivery = dl.listen(socket);
+//   delivery.on('receive.success',function(file){
+//     var params = file.params;
+//     fs.writeFile(file.name,file.buffer, function(err){
+//       if(err){
+//         console.log('File could not be saved.');
+//       }else{
+//         console.log('File saved.');
+//       };
+//     });
+//   });
+// });
