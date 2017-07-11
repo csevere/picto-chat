@@ -10,6 +10,7 @@ var express = require('express'),
     io = require('socket.io').listen(server);
 	//set a port for the app to run on
 	server.listen(3000);
+	console.log("listening on port 3000")
 
 	//import delivery and fs modules for file transfer, but not necessary for express however
     dl  = require('delivery'),
@@ -78,29 +79,17 @@ io.sockets.on('connect',(socket)=>{
 });
 
 
-///handling receiving files 
 
-io.sockets.on('connect', function(socket){
-	console.log("waiting for delivery")
-  var delivery = dl.listen(socket);
-  delivery.on('receive.success',function(file){
-    var params = file.params;
-    fs.writeFile(file.name,file.buffer, function(err){
-      if(err){
-        console.log('File could not be saved.');
-      }else{
-        console.log('File saved.');
-      };
-    });
-  });
-});
 
 module.exports = router;
 
 
 //ATTEMPTS TO SEND IMAGE VIA SOCKETS
 
-// io.sockets.on('connection', function(socket){
+///handling receiving files 
+
+// io.sockets.on('connect', function(socket){
+// 	console.log("waiting for delivery")
 //   var delivery = dl.listen(socket);
 //   delivery.on('receive.success',function(file){
 //     var params = file.params;
