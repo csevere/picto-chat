@@ -10,7 +10,7 @@ var express = require('express'),
     io = require('socket.io').listen(server);
 	//set a port for the app to run on
 	server.listen(3001);
-	console.log("listening on port 8080")
+	console.log("listening on port 3001")
 
 	//import delivery and fs modules for file transfer, but not necessary for express however
     dl  = require('delivery'),
