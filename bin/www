@@ -14,7 +14,7 @@ var http = require('http');
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '8080');
+var port = normalizePort(process.env.PORT || '7080');
 app.set('port', port);
 
 /**
@@ -22,6 +22,7 @@ app.set('port', port);
  */
 
 //require the instance we created in app.js that now contains our socket.io server as well.
+server = require('http').createServer(app);
 var server = require('../app').server;
 
 /**

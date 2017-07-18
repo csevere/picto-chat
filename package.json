@@ -12,12 +12,26 @@
     "debug": "~2.6.3",
     "delivery": "0.0.6",
     "ejs": "^2.5.6",
-    "express": "~4.15.2",
+    "express": "4.15.3",
     "express-session": "^1.15.3",
     "jade": "~1.11.0",
     "morgan": "~1.8.1",
     "mysql": "^2.13.0",
     "request": "^2.81.0",
-    "serve-favicon": "~2.4.2"
-  }
+    "serve-favicon": "~2.4.2",
+    "socket.io": "2.0.3"
+  },
+  "description": "",
+  "main": "app.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/csevere/picto-chat.git"
+  },
+  "author": "carla",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/csevere/picto-chat/issues"
+  },
+  "homepage": "https://github.com/csevere/picto-chat#readme"
 }
