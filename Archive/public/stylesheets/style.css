@@ -1,0 +1,529 @@
+*{
+  box-sizing: border-box;
+}
+
+
+html{
+  overflow-x: hidden;;
+}
+
+.header{
+  background: rgba(0, 255, 0, .3);
+}
+
+
+#toolbar{
+  color: white;
+  font-family: 'Ravi Prakash', cursive;
+  font-weight: bold;
+  font-size: 2em;
+  padding-top: 1em;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+#thickness{
+  width: 3em;
+}
+
+
+h1{
+  color: white;
+  font-weight: bold;
+  font-size: 50px;
+  text-align: center;
+  font-family: 'Inknut Antiqua', serif;
+  padding-top: 35px;
+  position: relative;
+  top: -1em;
+}
+
+
+#bg{
+  position: fixed;
+  top: 0;
+  left: 0;
+  /*preserve aspect ration */
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -1;
+}
+
+
+  /******** THE CANVAS *********/
+
+#canvas{
+  border: solid 5px black;
+  background-color: white;
+
+}
+
+
+
+ /************* THE FLANKS*****************/
+
+.right, .left{
+  color: white;
+
+}
+
+/******   THE WORD BOX ***********/
+
+#message1{
+  color: white;
+  font-size: 25px;
+  background-color: green;
+  font-weight: bold;
+  text-align: center;
+  font-family: 'Ravi Prakash', cursive;
+  border-radius: 5px;
+}
+
+
+
+
+
+
+/************ THE BUTTONS **********/
+
+ .btn-default{
+  display:block;
+  background-color:green;
+  color: white;
+  font-size: 25px;
+  border: 4px solid green;
+  margin: 30px;
+  font-family: 'Ravi Prakash', cursive;
+  border-radius: 5px;
+
+}
+/*
+#camera{
+    float: right;
+    height: 52px;
+    bottom: 37px;
+    left: 276px;
+}*/
+
+.btn-default2{
+  display:block;
+  background-color:green;
+  color: white;
+  font-size: 25px;
+  border: 4px solid green;
+  margin: 30px;
+  font-family: 'Ravi Prakash', cursive;
+  border-radius: 5px;
+}
+
+.btn-default3{
+  background-color:green;
+  color: white;
+  font-size: 15px;
+  border: 4px solid green;
+  border-radius: 5px;
+
+}
+
+
+.btn-default4{
+  background-color:green;
+  color: white;
+  font-size: 18px;
+  border: 4px solid green;
+  border-radius: 5px;
+
+}
+
+/********** END OF BUTTONS ***********/
+
+#form{
+    position: relative;
+    top: 145px;
+    color: black;
+    left: 32px;
+    font-family: 'Ravi Prakash', cursive;
+    font-size: 20px;
+}
+
+p2{
+  position: relative;
+  background: green;
+  top: 138px;
+  color: white;
+  font-family: 'Ravi Prakash', cursive;
+  font-size:25px;
+  left: 31px;
+  border: 2px solid green;
+  border-radius: 15px;
+
+}
+
+
+.footer{
+  position: relative;
+  top: 70px;
+  padding-left: 60px;
+  color: white;
+  font-family: 'Ravi Prakash', cursive;
+  font-size: 20px;
+  background-color: green;
+
+}
+
+
+
+
+/************ CHAT BOX ****************/
+
+
+ /**** HEADER *****/
+
+
+#chat-body{
+  margin-top: 10px; 
+  height: 35em;
+  background: rgba(0,102,0, 0.3);
+  border: 2px ridge green;
+  border-radius: 5px;
+  height: 100%; 
+}
+
+
+.header-chat{
+  margin-top: 10px;
+  background:rgba(4, 5, 4, 0.6); 
+  border: 2px inset green;
+  color: white;
+  width: 93%;
+  border-radius: 5px;
+  margin-left: 1.3em; 
+  padding-bottom: 10px;
+  wdith: 81vw;
+}
+
+
+#title{
+  float: left; 
+  color: white;
+  font-weight: bold;
+}
+
+#client{
+  display: inline-flex;
+  margin:10px 0px 0px 157px; 
+}
+
+#person img{
+  float: left;
+  height: 3em;
+  width: 3em;
+  margin: -3px 10px 0px 0px;
+}
+
+#submitUser{
+  float: right;
+  display: inline-block;
+  display: -webkit-box;
+} 
+
+#submitUser button{
+  margin: -4px 0px 0px 17px;
+
+}
+
+#submitUser input{
+  margin: 0px 10px 0px 10px;
+
+}
+
+#new-user{
+  margin-top: 15px;
+  color: black;
+}
+
+      });
+#newUser{
+  
+  right: 1em !important;
+}
+
+#messages{
+  margin-left: -17px; 
+  margin-top: 10px; 
+  height: 21em;
+  width: 53em;
+  border: 2px inset #A0A0A0;
+  background:rgba(4, 5, 4, 0.6);
+  color:white;
+  font-size: 14px; 
+  padding-left: 10px;
+  border-radius: 5px; 
+  overflow-y: auto; 
+  text-align: left; 
+
+}
+
+
+/*****  USER LISTS *****/
+
+
+
+.userslist{
+  float: right;
+  background:rgba(4, 5, 4, 0.6);
+  color: white;
+  border: 2px inset #A0A0A0;
+  height: 21em;
+  width: 8.2em;
+  margin-right: 2em;
+  margin-top: 10px;
+  border-radius: 5px;
+  overflow-y: auto;
+}
+
+
+#online-users{
+  float: right;
+  width: 100%; 
+  background: rgba(137, 46, 46, 0.3);
+  color: white;
+  height: 2em;
+  font-weight: bold;
+  text-align: center;
+}
+
+
+/****  FORMS: THE INPUT AND SUBMIT ****/
+
+
+ #submit-message input{
+  border-radius: 5px;
+  margin-top: 10px; 
+  width: 70%;
+ }
+
+
+
+.buttons{
+  float: left;
+  margin: 7px 12px;
+}
+
+/*.buttons button{
+  border: 5px solid orange;
+  font-size: 10px;
+  
+}*/
+
+#input-area{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#submit-message{
+  width: 100%; 
+}
+
+#imagefile img{
+  width: 42px;
+  height: 42px; 
+  float: left;
+  margin: 7px 12px 0px 12px;
+  background-size: auto;
+/*  padding-left: 1px;*/
+  cursor: pointer; 
+
+}
+
+
+#subfile{
+  color: green;
+}
+
+#selectfile{
+  color: white;
+}
+
+/******** media queries*******/
+
+
+
+
+/*
+use this for physical screen sizes*/
+
+@media only screen and (max-device-width: 1200px){
+
+  .userslist{
+    margin-right: 0.5em;
+  }
+
+  #messages{
+    width: 45em;
+  }
+
+
+    
+}
+
+/*use this for decreasing browser window*/
+@media (max-width: 1199px){
+
+  .userslist{
+    margin-right: 0.5em;
+  }
+
+  #messages{
+    width: 42em;
+  }
+    
+}
+
+
+@media only screen and (max-device-width: 1024px){
+
+  .userslist{
+    margin-right: 0.5em;
+  }
+
+  #messages{
+    width: 44em;
+  }
+    
+}
+
+@media only screen and (max-device-width: 991px){
+
+  .userslist{
+    margin-right: 0.5em;
+  }
+
+  #messages{
+    width: 30em;
+  }
+    
+}
+
+@media (max-width: 991px){
+
+  .userslist{
+    margin-right: 0.5em;
+  }
+
+  #messages{
+    width: 31em;
+  }
+
+  h1{
+    margin-left: 6em;
+  }
+    
+}
+
+
+@media only screen and (max-device-width: 768px){
+
+  .userslist{
+    margin-right: 0.5em;
+  }
+
+  #messages{
+    width: 30em;
+  }
+    
+}
+
+@media (max-width: 767px){
+
+  .userslist{
+    margin-right: 0.5em;
+    margin-top: -21em;
+  }
+
+  #messages{
+    width: 31em;
+  }
+
+  h1{
+      margin-left: 6em;
+  }
+    
+}
+
+
+@media only screen and (max-device-width: 640px){
+
+  .userslist{
+    margin-right: 0.5em;
+  }
+
+  #messages{
+    width: 29em;
+  }
+
+  h1{
+      margin-left: 6em;
+  }
+   
+}
+
+
+@media only screen and (max-device-width: 400px){
+
+  .userslist{
+    margin-right: 0.5em;
+  }
+
+  #messages{
+    width: 29em;
+  }
+
+  h1{
+      margin-left: 6em;
+  }
+
+    
+}
+
+
+@media only screen and (max-width: 500px){
+
+  .userslist{
+    margin-right: 0.5em;
+  }
+
+  #messages{
+    width: 29em;
+  }
+
+  h1{
+      margin-left: 6em;
+  }
+
+    
+}
+
+/*@media only screen and (max-device-width: 1366px){
+
+  .userslist{
+    margin-right: 1.5em;
+  }
+
+  #messages{
+    width: 42em;
+  }
+
+    
+}
+*/
+
+
+
+
+
+
+
+
+   

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Picto-Chat</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+
+    <link rel="stylesheet" href="stylesheets/bootstrap.min.css">
+    
+    <link rel="stylesheet" type ="text/css" href="stylesheets/style.css"/>
+    
+    <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah|Inknut+Antiqua|Ravi+Prakash" rel="stylesheet">
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+
+    <script type="text/javascript" src = "javascripts/scripts2.js"></script>
+
+    <script type="text/javascript" src = "javascripts/client.js"></script>
+
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+
+<!--  <script type="text/javascript" src = "/socket.io/socket.io.js"></script> -->
+
+    <script src="http://localhost:7090/socket.io/socket.io.js"></script>
+
+  </head>
+
+
+  <body>
+
+    <div class = "container-fluid mainpage">
+          
+                  <!--    HEADER -->
+      <div class="container-fluid text-center">
+        <div class = "row">
+            <div class = "col-md-12 col-sm-12 header">
+                  <div id = "toolbar">
+                    <label>Choose marker color</label>
+                    <input type = "color"  id = "color-picker"/>
+                    <label>Choose marker thickness</label>
+                    <input type = "number" id = "thickness" placeholder ="10"/> 
+                  </div>
+            </div>
+        </div>
+      </div>
+
+      <div id = "background-wrap">
+        <div class = "img-center">
+            <img src = "./images/p1.jpg" id = "bg" alt ="" name = "bkImage1"/>
+            <img src = "./images/p2.jpg" id = "bg" alt ="" name = "bkImage2"/>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12 text-center" id = title>
+             <h1>PICTO CHAT</h1>
+        </div>
+      </div>
+
+
+      <div class="container-fluid">
+        <div class = "row">
+          <div class = "col-md-12 main">
+                  
+                      <!--    THE LEFT SIDE -->
+
+              <div class = "col-md-3 col-sm-4 left">
+                  <button class = "btn btn-default" id = "changeBG">Change Background</button>
+                  <button class = "btn btn-default" id = "startEasy">Easy</button>
+                  <button class = "btn btn-default" id = "startFair">Fair</button>
+                  <button class = "btn btn-default" id = "startHard">Hard</button>  
+              </div>
+
+
+                    <!--     THE CANVAS -->
+
+              <div class = "col-md-6 col-sm-7 thecanvas">
+                  <canvas id = "canvas"  height ="378px" width = "500px"></canvas>
+              </div>
+
+               <!--  THE RIGHT SIDE -->
+
+              <div class = "col-md-3 col-sm-4 right">
+                  <div id = "message1">Word Box</div>
+                   <button class = "btn btn-default2" id = "clearPic">Clear Picture</button> 
+                  <button class = "btn btn-default2"  id = "clearBox">Clear Boxes</button>
+                  <button class = "btn btn-default2"  id = "doSnapshot" >Snapshot</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+         
+           <!-- CHAT BOX START -->
+        <div class="container">
+          <div class="row">
+            <div class="col-md-10 col-sm-10 col-sm-offset-1" id = "chat-body">
+
+              <!--  CHAT HEADER -->
+              <div class="row">
+                <div class="col-md-8 col-sm-8 header-chat" >
+                  <div class="row">
+
+                    <div class = "col-md-3 col-sm-3">
+                      <div id = "title">
+                          <h3> CHAT!</h3> 
+                      </div>
+                    </div>
+               
+                    <div id = "client" class = "col-md-5 col-sm-6 col-sm-offset-3">
+                      <div id = "person">
+                        <img src="https://cdn2.iconfinder.com/data/icons/crystalproject/crystal_project_256x256/apps/personal.png">
+                      </div>
+                      <!--     ADD NEW USER SECTION -->
+                        <form id = "submitUser">
+                          <div class="form-group">
+                            <input type = "text" class = "form-control" id = "new-user">
+                          </div> 
+                           <span><button class="btn btn-success" type = "submit" id = "newUser">JOIN</button></span>              
+                        </form>
+                    </div>
+
+                  </div>
+
+
+                </div>
+              </div>
+
+               
+              <div class="row">
+                <div class="col-md-12 col-sm-12" id = "main-body">
+                <!--    MESSAGE BOX -->
+                  <div class="col-md-6 col-sm-6">
+                      <div class = "text-child" id = "messages">
+                          <p> <!-- Messages display here  --> </p>
+
+                          <div id = "image"></div> 
+
+                      </div>
+                  </div>
+                    <!--   USERS' LIST -->
+                 
+                  <div class = " col-md-2 col-sm-2 userslist">
+                    <div id =  "online-users" class ="users">     Online 
+                    </div> 
+
+                    <div id = "users" class= "users">  
+                      <div> <!-- User's name here --> </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+
+              <div class="row">
+                <div id = "input-area" class="col-md-12 col-sm-12">
+                  <form id = "submit-message">
+
+
+                    <div id = "clear">
+                      <button class = "btn btn-success buttons" type = "button">CLEAR</button>
+                    </div>
+
+                    <div class="form-group">
+                      <input type = "text" class="form-control" placeholder="Type a message..." id = "new-message"/>
+                    </div>
+
+                  </form>
+
+                    <!-- <img type = "submit" src="http://3.bp.blogspot.com/-edR_g33a6Tk/U3OVAFX79-I/AAAAAAAAAkY/EjUzlPCy3wQ/s1600/Camera-iOS7-Icon-cssauthor.com_.png" alt="" > -->
+                   <!--  <input type = "submit" value = "Upload File" id = "subfile"/>
+                    <input type = "file" id = "selectfile"/>
+               -->
+
+                </div>
+              </div> 
+
+              
+            </div>
+          </div>
+<!--   CHAT BOX END DIV -->
+        </div>
+
+<!--  END DIV FOR WHOLE CONTAINER -->
+    </div>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.1/socket.io.js"></script>
+
+ 
+
+  </body>
+</html>
