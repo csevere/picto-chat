@@ -1,5 +1,4 @@
 
-
 window.onload = function(){
 
     var canvas = document.getElementById('canvas');
@@ -93,122 +92,13 @@ window.onload = function(){
 
     $(document).ready(function(){
 
-////CHAT START/////
-
-
-    //Creating the client side script
-    var socketio = io.connect('http://localhost:3000');
-
-    // // Send an event to the server
-    // socketio.emit('nameToServer',name);
-    
-//////// THE JOIN BUTTON ///// 
-    $('#submitUser').submit(function(event){
-        //prevent from repeating submission
+    $("#clear").click(function(){
         event.preventDefault();
-        $('#users').empty();
-        // console.log(name);  
-        var name = $('#new-user').val();
+        $('#messages').empty(); 
+        console.log("it works")
 
-        //coming from index.js
-        //creates a tcp connection
-
-        //sends an event to the server
-        // console.log("TEST1");
-        socketio.emit('nameToServer', name);
-      
-   });
-
-    // listener, whenever the server emits 'updatechat', this updates the chat body
-    socket.on('updatechat', function (name, data) {
-        $('#messages').append('<b>'+name + ':</b> ' + data + '<br>');
-    });
-
-
-    socketio.on('newUser', (userName)=>{
-         event.preventDefault();
-         // console.log("TEST4")
-        // console.log(userName + " just joined!")
-      
-        userName.shift();
-        var userlist = userName.slice(-1)[0];
-        $('#users').append(`<div id="users">${userlist}</div>`);
-        $('#messages').append(`<p>${userlist} has joined the chat!</p>`);  
-
-        // userName.forEach((elem) => {
-        //    // console.log(userName);
-        //    console.log(elem); 
-        //    $('#users').append(`<div id="users">${elem}</div>`);
-        //    $('#messages').prepend(`<p>${elem} has joined the chat!</p>`);   
-        // })
-
-         // console.log("TEST5")
-           // console.log(newUsers);
-    })
-          
-      
-
-    $('#submit-message').submit(function(event){
-        event.preventDefault();
-        var name = $('#new-user').val();
-        var newMessage = $('#new-message').val();
-        // console.log(newMessage)
-        socketio.emit('messageToServer', {
-                newMessage: newMessage,
-                name: name 
-        });
-
-    });
-        
-    socketio.on('messageToClient', (message)=>{
-        var now = new Date(Date.now());
-        var uiFormat = now.getHours() + ":" + now.getMinutes(); 
-        // console.log(uiFormat); 
-
-        $('#messages').prepend('<p> ' + message +  ' (' +uiFormat+ ')' + '</p>'); 
-
-        });
-
-    socketio.on('userDisconnect', (userName)=>{
-         userName.forEach((elem) => {   
-           $('#messages').prepend(`<p>${elem} has left the chat!</p>`); 
-        });
-    });
-
-
-
-    //UPLOAD PICTURE FUNCTION///
-
-
-    $('#imagefile').bind('change', function(e){
-      var data = e.originalEvent.target.files[0];
-      var reader = new FileReader();
-      reader.onload = function(evt){
-        image('me', evt.target.result);
-        socket.emit('user image', evt.target.result);
-      };
-      reader.readAsDataURL(data);
-      
-    });
-
-
-        //image is received/add img element to DOM
-        
-        socketio.on('user image', image);
-
-        function image (from, base64Image) {
-            $('#messages').append($('<b>').text(from),
-            '<img src="' + base64Image + '"/>');
-        }
-
-
-  
-
-
-
-
-                    ///// END OF CHAT /////
-
+    }) 
+              
 
       /////// CHANGE BACKGROUND OF GAME ///////
 
@@ -320,6 +210,7 @@ window.onload = function(){
         });
 
 
-    }); 
+    });
+
+
 }
-        

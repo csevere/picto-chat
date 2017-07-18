@@ -1,12 +1,19 @@
- 
 var express = require('express'),
     router = express.Router(),
+    app = express(),
+    server = require('http').createServer(app),
+    http = require('http'),
+    name = 'picto-chat',
     socketio = require('socket.io'),
-    io = socketio();
-	console.log("listening on port 7080")
+    //io is listening to the server
+    io = require('socket.io').listen(server);
+	//set a port for the app to run on
+	server.listen(3000);
+	console.log("listening on port 3000")
+
 	//import delivery and fs modules for file transfer, but not necessary for express however
     dl  = require('delivery'),
-    fs = require('fs'),
+    fs = require('fs');
 
 
 
@@ -69,6 +76,9 @@ io.sockets.on('connect',(socket)=>{
 
 
 });
+
+
+
 
 module.exports = router;
 

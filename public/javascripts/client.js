@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
     //Creating the client side script
-    var socketio = io.connect('http://localhost:3001');
+    var socketio = io.connect('http://localhost:3000');
 
     // // Send an event to the server
     // socketio.emit('nameToServer',name);
