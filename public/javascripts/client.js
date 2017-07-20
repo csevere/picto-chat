@@ -1,5 +1,4 @@
 $(document).ready(function(){
-
     //Creating the client side script
     var socketio = io.connect('http://localhost:3000');
 
@@ -20,6 +19,7 @@ $(document).ready(function(){
 
 
     socketio.on('newUser', (newUsers)=>{
+        console.log("hello")
 
         event.preventDefault();
       

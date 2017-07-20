@@ -6,23 +6,36 @@
 
 //returning express app and an object containing app and server
 var app = require('../app').app;
-
 var debug = require('debug')('picto-chat:server');
 var http = require('http');
+
+
+
+ // * Socket.io
+ // */
+// sockets = require("../routes/sockets"); 
+// io = require('socket.io').listen(server);
 
 /**
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '7090');
+var port = normalizePort(process.env.PORT || '7080');
 app.set('port', port);
+
+
+/**
+
+
+// io.listen(server);
+
 
 /**
  * Create HTTP server.
  */
 
 //require the instance we created in app.js that now contains our socket.io server as well.
-server = require('http').createServer(app);
+// server = require('http').createServer(app);
 var server = require('../app').server;
 
 /**
@@ -32,6 +45,15 @@ var server = require('../app').server;
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
+
+
+/**
+ * Create HTTP server.
+ */
+
+// var server = http.createServer(app);
+
+
 
 /**
  * Normalize a port into a number, string, or false.
