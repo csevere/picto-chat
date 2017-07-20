@@ -3,7 +3,7 @@ var express = require('express'),
 
 
 console.log("sockets listening on port 3000");
-console.log("express listening on port 7090"); 
+console.log("express listening on port 7080"); 
 /* GET home page. */
 router.get('/', function(req, res){
    res.render('index', {title: 'Express'});
