@@ -6,11 +6,11 @@ var express = require('express'),
 //io is listening to the server
 	io = require('socket.io').listen(server);
 // set a port for the app to run on
-var port = ('3000');
+var port = ('5000');
 server.listen(port);
 
 
-console.log("sockets listening on port 3000");
+console.log("sockets listening on port 5000");
 
 
 //import delivery and fs modules for file transfer, but not necessary for express however
